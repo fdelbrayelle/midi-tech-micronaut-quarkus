@@ -1,0 +1,1214 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 1471152128 bytes for committing reserved memory.
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   The process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+#   JVM is running with Zero Based Compressed Oops mode in which the Java heap is
+#     placed in the first 32GB address space. The Java Heap base address is the
+#     maximum limit for the native heap growth. Please use -XX:HeapBaseMinAddress
+#     to set the Java Heap base and to place the Java Heap above 32GB virtual address.
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (os_linux.cpp:2749), pid=5539, tid=0x00007fd08e5e5700
+#
+# JRE version: Java(TM) SE Runtime Environment (8.0_221-b11) (build 1.8.0_221-b11)
+# Java VM: Java HotSpot(TM) 64-Bit GraalVM EE 19.2.0 (25.221-b11-jvmci-19.2-b02 mixed mode linux-amd64 compressed oops)
+# Failed to write core dump. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00007fd0a408a800):  VMThread [stack: 0x00007fd08e4e6000,0x00007fd08e5e6000] [id=5550]
+
+Stack: [0x00007fd08e4e6000,0x00007fd08e5e6000],  sp=0x00007fd08e5e4410,  free space=1017k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [libjvm.so+0xb7b8b5]  VMError::report_and_die()+0x2c5
+V  [libjvm.so+0x4fa197]  report_vm_out_of_memory(char const*, int, unsigned long, VMErrorType, char const*)+0x67
+V  [libjvm.so+0x9b6f30]  os::pd_commit_memory(char*, unsigned long, unsigned long, bool)+0x100
+V  [libjvm.so+0x9ae86f]  os::commit_memory(char*, unsigned long, unsigned long, bool)+0x1f
+V  [libjvm.so+0xa334b6]  PSVirtualSpace::expand_by(unsigned long)+0x56
+V  [libjvm.so+0xa2226b]  PSOldGen::expand_by(unsigned long) [clone .part.28]+0x1b
+V  [libjvm.so+0xa22428]  PSOldGen::expand(unsigned long) [clone .part.29]+0xa8
+V  [libjvm.so+0xa22fd1]  PSOldGen::resize(unsigned long)+0xe1
+V  [libjvm.so+0xa29146]  PSParallelCompact::invoke_no_policy(bool) [clone .part.118]+0xa06
+V  [libjvm.so+0xa311e5]  PSScavenge::invoke()+0x215
+V  [libjvm.so+0x9e0868]  ParallelScavengeHeap::failed_mem_allocate(unsigned long)+0x68
+V  [libjvm.so+0xb7d4a3]  VM_ParallelGCFailedAllocation::doit()+0x93
+V  [libjvm.so+0xb848a6]  VM_Operation::evaluate()+0x46
+V  [libjvm.so+0xb82c2d]  VMThread::evaluate_operation(VM_Operation*) [clone .constprop.44]+0xcd
+V  [libjvm.so+0xb831eb]  VMThread::loop()+0x37b
+V  [libjvm.so+0xb83598]  VMThread::run()+0x78
+V  [libjvm.so+0x9b4652]  java_start(Thread*)+0x102
+
+VM_Operation (0x00007fc7bf8be090): ParallelGCFailedAllocation, mode: safepoint, requested by thread 0x00007fc820009800
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x00007fc81c001000 JavaThread "ForkJoinPool-3-worker-0" daemon [_thread_blocked, id=6594, stack(0x00007fc7af5ff000,0x00007fc7b0000000)]
+  0x00007fc82823e000 JavaThread "ForkJoinPool-3-worker-7" daemon [_thread_blocked, id=6590, stack(0x00007fc7bc6bb000,0x00007fc7bd0bc000)]
+  0x00007fc82823c000 JavaThread "ForkJoinPool-3-worker-6" daemon [_thread_blocked, id=6589, stack(0x00007fc7bd0bc000,0x00007fc7bdabd000)]
+  0x00007fc7fc231000 JavaThread "ForkJoinPool-3-worker-5" daemon [_thread_blocked, id=6587, stack(0x00007fc7bdabd000,0x00007fc7be4be000)]
+  0x00007fc82823b000 JavaThread "ForkJoinPool-3-worker-4" daemon [_thread_blocked, id=6586, stack(0x00007fc7be4be000,0x00007fc7beebf000)]
+  0x00007fc820009800 JavaThread "ForkJoinPool-3-worker-3" daemon [_thread_blocked, id=6585, stack(0x00007fc7beebf000,0x00007fc7bf8c0000)]
+  0x00007fc828239800 JavaThread "ForkJoinPool-3-worker-2" daemon [_thread_blocked, id=6584, stack(0x00007fc7bf8c0000,0x00007fc7c02c1000)]
+  0x00007fc828238800 JavaThread "ForkJoinPool-3-worker-1" daemon [_thread_blocked, id=6583, stack(0x00007fc7c02c1000,0x00007fc7c0cc2000)]
+  0x00007fc7e0002800 JavaThread "ForkJoinPool-4-worker-0" daemon [_thread_blocked, id=6582, stack(0x00007fc7c0cc2000,0x00007fc7c16c3000)]
+  0x00007fc80829e000 JavaThread "ForkJoinPool-4-worker-7" daemon [_thread_blocked, id=6581, stack(0x00007fc7c16c3000,0x00007fc7c20c4000)]
+  0x00007fc800215000 JavaThread "ForkJoinPool-4-worker-6" daemon [_thread_blocked, id=6580, stack(0x00007fc7c20c4000,0x00007fc7c2ac5000)]
+  0x00007fc7e0001800 JavaThread "ForkJoinPool-4-worker-5" daemon [_thread_blocked, id=6579, stack(0x00007fd0757fc000,0x00007fd0761fd000)]
+  0x00007fc808294000 JavaThread "ForkJoinPool-4-worker-4" daemon [_thread_blocked, id=6578, stack(0x00007fd07c029000,0x00007fd07ca2a000)]
+  0x00007fc808293800 JavaThread "ForkJoinPool-4-worker-3" daemon [_thread_blocked, id=6577, stack(0x00007fd05333f000,0x00007fd053d40000)]
+  0x00007fc82803c000 JavaThread "ForkJoinPool-4-worker-2" daemon [_thread_blocked, id=6576, stack(0x00007fd074dfb000,0x00007fd0757fc000)]
+  0x00007fc8082a6800 JavaThread "RxCachedWorkerPoolEvictor-1" daemon [_thread_blocked, id=6195, stack(0x00007fd050b3b000,0x00007fd05153c000)]
+  0x00007fc8082a6000 JavaThread "RxSchedulerPurge-1" daemon [_thread_blocked, id=6194, stack(0x00007fd0761fd000,0x00007fd076bfe000)]
+  0x00007fc808091800 JavaThread "ForkJoinPool-2-worker-4" daemon [_thread_blocked, id=5957, stack(0x00007fc7e4b09000,0x00007fc7e550a000)]
+  0x00007fc7dc001000 JavaThread "ForkJoinPool-2-worker-6" daemon [_thread_blocked, id=5743, stack(0x00007fc7d75ff000,0x00007fc7d8000000)]
+  0x00007fc7d8001000 JavaThread "ForkJoinPool-2-worker-5" daemon [_thread_blocked, id=5742, stack(0x00007fc7e4108000,0x00007fc7e4b09000)]
+  0x00007fc80c06d000 JavaThread "ForkJoinPool-2-worker-3" daemon [_thread_blocked, id=5740, stack(0x00007fc7e550a000,0x00007fc7e5f0b000)]
+  0x00007fc8280e8000 JavaThread "ForkJoinPool-2-worker-1" daemon [_thread_blocked, id=5738, stack(0x00007fd076bfe000,0x00007fd0775ff000)]
+  0x00007fd0a44ee000 JavaThread "ForkJoinPool-4-worker-1" daemon [_thread_blocked, id=5576, stack(0x00007fd084bc5000,0x00007fd0855c6000)]
+  0x00007fd0a416d800 JavaThread "native-image pid watcher" [_thread_blocked, id=5560, stack(0x00007fd085bef000,0x00007fd0865f0000)]
+  0x00007fd0a40df000 JavaThread "Service Thread" daemon [_thread_blocked, id=5558, stack(0x00007fd0869fd000,0x00007fd0873fe000)]
+  0x00007fd0a40d2000 JavaThread "C1 CompilerThread3" daemon [_thread_blocked, id=5557, stack(0x00007fd0873ff000,0x00007fd0875ff000)]
+  0x00007fd0a40d0000 JavaThread "JVMCI-native CompilerThread2" daemon [_thread_blocked, id=5556, stack(0x00007fd08c012000,0x00007fd08c212000)]
+  0x00007fd0a40ce000 JavaThread "JVMCI-native CompilerThread1" daemon [_thread_blocked, id=5555, stack(0x00007fd08c213000,0x00007fd08c413000)]
+  0x00007fd0a40cb000 JavaThread "JVMCI-native CompilerThread0" daemon [_thread_blocked, id=5554, stack(0x00007fd08c414000,0x00007fd08c614000)]
+  0x00007fd0a40c9800 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=5553, stack(0x00007fd0875ff000,0x00007fd088000000)]
+  0x00007fd0a4096800 JavaThread "Finalizer" daemon [_thread_blocked, id=5552, stack(0x00007fd08d0e3000,0x00007fd08dae4000)]
+  0x00007fd0a4092000 JavaThread "Reference Handler" daemon [_thread_blocked, id=5551, stack(0x00007fd08dae4000,0x00007fd08e4e5000)]
+  0x00007fd0a4010000 JavaThread "main" [_thread_blocked, id=5541, stack(0x00007fd0ab923000,0x00007fd0ac323000)]
+
+Other Threads:
+=>0x00007fd0a408a800 VMThread [stack: 0x00007fd08e4e6000,0x00007fd08e5e6000] [id=5550]
+  0x00007fd0a40f2000 WatcherThread [stack: 0x00007fd0868fd000,0x00007fd0869fd000] [id=5559]
+
+VM state:at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x00007fd0a400bf10] ExpandHeap_lock - owner thread: 0x00007fd0a408a800
+[0x00007fd0a400c590] Threads_lock - owner thread: 0x00007fd0a408a800
+[0x00007fd0a400ca90] Heap_lock - owner thread: 0x00007fc820009800
+
+heap address: 0x000000063a800000, size: 6232 MB, Compressed Oops mode: Zero based, Oop shift amount: 3
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 3
+Compressed class space size: 1073741824 Address: 0x00000007c0000000
+
+Heap:
+ PSYoungGen      total 1418240K, used 0K [0x000000073e300000, 0x00000007c0000000, 0x00000007c0000000)
+  eden space 709632K, 0% used [0x000000073e300000,0x000000073e300000,0x0000000769800000)
+  from space 708608K, 0% used [0x0000000794c00000,0x0000000794c00000,0x00000007c0000000)
+  to   space 708608K, 0% used [0x0000000769800000,0x0000000769800000,0x0000000794c00000)
+ ParOldGen       total 2195456K, used 1031325K [0x000000063a800000, 0x00000006c0800000, 0x000000073e300000)
+  object space 2195456K, 46% used [0x000000063a800000,0x0000000679727418,0x00000006c0800000)
+ Metaspace       used 126391K, capacity 131923K, committed 132696K, reserved 1159168K
+  class space    used 22507K, capacity 23425K, committed 23640K, reserved 1048576K
+
+Card table byte_map: [0x00007fd0a9891000,0x00007fd0aa4be000] byte_map_base: 0x00007fd0a66bd000
+
+Marking Bits: (ParMarkBitMap*) 0x00007fd0ad773960
+ Begin Bits: [0x00007fd053d40000, 0x00007fd059ea0000)
+ End Bits:   [0x00007fd059ea0000, 0x00007fd060000000)
+
+Polling page: 0x00007fd0ae3e1000
+
+CodeCache: size=245760Kb used=32168Kb max_used=34027Kb free=213591Kb
+ bounds [0x00007fd095000000, 0x00007fd097210000, 0x00007fd0a4000000]
+ total_blobs=10108 nmethods=9126 adapters=891
+ compilation: enabled
+
+Compilation events (10 events):
+Event: 87,680 Thread 0x00007fd0a40cb000 15018       4       org.graalvm.compiler.graph.NodeInputList::<init> (7 bytes)
+Event: 87,685 Thread 0x00007fd0a40cb000 nmethod 15018 0x00007fd095d59990 code [0x00007fd095d59ae0, 0x00007fd095d59d48]
+Event: 87,685 Thread 0x00007fd0a40cb000 15150       4       org.graalvm.compiler.nodes.FrameState::duplicateModifiedDuringCall (18 bytes)
+Event: 87,686 Thread 0x00007fd0a40ce000 nmethod 15105 0x00007fd0951e7a50 code [0x00007fd0951e7bc0, 0x00007fd0951e7d80]
+Event: 87,686 Thread 0x00007fd0a40ce000 14891       4       org.graalvm.compiler.nodes.ReturnNode::<init> (21 bytes)
+Event: 87,688 Thread 0x00007fd0a40ce000 nmethod 14891 0x00007fd095e89050 code [0x00007fd095e891a0, 0x00007fd095e89220]
+Event: 87,688 Thread 0x00007fd0a40ce000 14835 %     4       com.oracle.svm.hosted.phases.StrengthenStampsPhase::run @ 10 (226 bytes)
+Event: 87,719 Thread 0x00007fd0a40cb000 nmethod 15150 0x00007fd095445a50 code [0x00007fd095445ba0, 0x00007fd095445c70]
+Event: 87,719 Thread 0x00007fd0a40cb000 15258       4       org.graalvm.compiler.core.common.type.FloatStamp::hashCode (81 bytes)
+Event: 87,721 Thread 0x00007fd0a40cb000 nmethod 15258 0x00007fd095d86dd0 code [0x00007fd095d86f20, 0x00007fd095d87028]
+
+GC Heap History (10 events):
+Event: 77,915 GC heap after
+Heap after GC invocations=32 (full 4):
+ PSYoungGen      total 1446912K, used 458042K [0x000000073e300000, 0x00000007c0000000, 0x00000007c0000000)
+  eden space 870400K, 0% used [0x000000073e300000,0x000000073e300000,0x0000000773500000)
+  from space 576512K, 79% used [0x000000079af00000,0x00000007b6e4e998,0x00000007be200000)
+  to   space 628224K, 0% used [0x0000000773500000,0x0000000773500000,0x0000000799a80000)
+ ParOldGen       total 2195456K, used 1289715K [0x000000063a800000, 0x00000006c0800000, 0x000000073e300000)
+  object space 2195456K, 58% used [0x000000063a800000,0x000000068937cf60,0x00000006c0800000)
+ Metaspace       used 126081K, capacity 131891K, committed 132056K, reserved 1157120K
+  class space    used 22555K, capacity 23509K, committed 23512K, reserved 1048576K
+}
+Event: 81,303 GC heap before
+{Heap before GC invocations=33 (full 4):
+ PSYoungGen      total 1446912K, used 1328442K [0x000000073e300000, 0x00000007c0000000, 0x00000007c0000000)
+  eden space 870400K, 100% used [0x000000073e300000,0x0000000773500000,0x0000000773500000)
+  from space 576512K, 79% used [0x000000079af00000,0x00000007b6e4e998,0x00000007be200000)
+  to   space 628224K, 0% used [0x0000000773500000,0x0000000773500000,0x0000000799a80000)
+ ParOldGen       total 2195456K, used 1289715K [0x000000063a800000, 0x00000006c0800000, 0x000000073e300000)
+  object space 2195456K, 58% used [0x000000063a800000,0x000000068937cf60,0x00000006c0800000)
+ Metaspace       used 126327K, capacity 132167K, committed 132312K, reserved 1159168K
+  class space    used 22556K, capacity 23511K, committed 23512K, reserved 1048576K
+Event: 81,976 GC heap after
+Heap after GC invocations=33 (full 4):
+ PSYoungGen      total 1498624K, used 628198K [0x000000073e300000, 0x00000007c0000000, 0x00000007c0000000)
+  eden space 870400K, 0% used [0x000000073e300000,0x000000073e300000,0x0000000773500000)
+  from space 628224K, 99% used [0x0000000773500000,0x0000000799a79be0,0x0000000799a80000)
+  to   space 628224K, 0% used [0x0000000799a80000,0x0000000799a80000,0x00000007c0000000)
+ ParOldGen       total 2195456K, used 1416459K [0x000000063a800000, 0x00000006c0800000, 0x000000073e300000)
+  object space 2195456K, 64% used [0x000000063a800000,0x0000000690f42fe8,0x00000006c0800000)
+ Metaspace       used 126327K, capacity 132167K, committed 132312K, reserved 1159168K
+  class space    used 22556K, capacity 23511K, committed 23512K, reserved 1048576K
+}
+Event: 84,826 GC heap before
+{Heap before GC invocations=34 (full 4):
+ PSYoungGen      total 1498624K, used 1498598K [0x000000073e300000, 0x00000007c0000000, 0x00000007c0000000)
+  eden space 870400K, 100% used [0x000000073e300000,0x0000000773500000,0x0000000773500000)
+  from space 628224K, 99% used [0x0000000773500000,0x0000000799a79be0,0x0000000799a80000)
+  to   space 628224K, 0% used [0x0000000799a80000,0x0000000799a80000,0x00000007c0000000)
+ ParOldGen       total 2195456K, used 1416459K [0x000000063a800000, 0x00000006c0800000, 0x000000073e300000)
+  object space 2195456K, 64% used [0x000000063a800000,0x0000000690f42fe8,0x00000006c0800000)
+ Metaspace       used 126530K, capacity 132395K, committed 132696K, reserved 1159168K
+  class space    used 22560K, capacity 23517K, committed 23640K, reserved 1048576K
+Event: 85,505 GC heap after
+Heap after GC invocations=34 (full 4):
+ PSYoungGen      total 1337856K, used 628201K [0x000000073e300000, 0x00000007c0000000, 0x00000007c0000000)
+  eden space 709632K, 0% used [0x000000073e300000,0x000000073e300000,0x0000000769800000)
+  from space 628224K, 99% used [0x0000000799a80000,0x00000007bfffa5f0,0x00000007c0000000)
+  to   space 708608K, 0% used [0x0000000769800000,0x0000000769800000,0x0000000794c00000)
+ ParOldGen       total 2195456K, used 1548245K [0x000000063a800000, 0x00000006c0800000, 0x000000073e300000)
+  object space 2195456K, 70% used [0x000000063a800000,0x0000000698ff5430,0x00000006c0800000)
+ Metaspace       used 126530K, capacity 132395K, committed 132696K, reserved 1159168K
+  class space    used 22560K, capacity 23517K, committed 23640K, reserved 1048576K
+}
+Event: 86,543 GC heap before
+{Heap before GC invocations=35 (full 4):
+ PSYoungGen      total 1337856K, used 1337833K [0x000000073e300000, 0x00000007c0000000, 0x00000007c0000000)
+  eden space 709632K, 100% used [0x000000073e300000,0x0000000769800000,0x0000000769800000)
+  from space 628224K, 99% used [0x0000000799a80000,0x00000007bfffa5f0,0x00000007c0000000)
+  to   space 708608K, 0% used [0x0000000769800000,0x0000000769800000,0x0000000794c00000)
+ ParOldGen       total 2195456K, used 1548245K [0x000000063a800000, 0x00000006c0800000, 0x000000073e300000)
+  object space 2195456K, 70% used [0x000000063a800000,0x0000000698ff5430,0x00000006c0800000)
+ Metaspace       used 126551K, capacity 132395K, committed 132696K, reserved 1159168K
+  class space    used 22560K, capacity 23517K, committed 23640K, reserved 1048576K
+Event: 87,120 GC heap after
+Heap after GC invocations=35 (full 4):
+ PSYoungGen      total 1418240K, used 575043K [0x000000073e300000, 0x00000007c0000000, 0x00000007c0000000)
+  eden space 709632K, 0% used [0x000000073e300000,0x000000073e300000,0x0000000769800000)
+  from space 708608K, 81% used [0x0000000769800000,0x000000078c990fc0,0x0000000794c00000)
+  to   space 708608K, 0% used [0x0000000794c00000,0x0000000794c00000,0x00000007c0000000)
+ ParOldGen       total 2195456K, used 1676392K [0x000000063a800000, 0x00000006c0800000, 0x000000073e300000)
+  object space 2195456K, 76% used [0x000000063a800000,0x00000006a0d1a228,0x00000006c0800000)
+ Metaspace       used 126551K, capacity 132395K, committed 132696K, reserved 1159168K
+  class space    used 22560K, capacity 23517K, committed 23640K, reserved 1048576K
+}
+Event: 87,771 GC heap before
+{Heap before GC invocations=36 (full 4):
+ PSYoungGen      total 1418240K, used 1284675K [0x000000073e300000, 0x00000007c0000000, 0x00000007c0000000)
+  eden space 709632K, 100% used [0x000000073e300000,0x0000000769800000,0x0000000769800000)
+  from space 708608K, 81% used [0x0000000769800000,0x000000078c990fc0,0x0000000794c00000)
+  to   space 708608K, 0% used [0x0000000794c00000,0x0000000794c00000,0x00000007c0000000)
+ ParOldGen       total 2195456K, used 1676392K [0x000000063a800000, 0x00000006c0800000, 0x000000073e300000)
+  object space 2195456K, 76% used [0x000000063a800000,0x00000006a0d1a228,0x00000006c0800000)
+ Metaspace       used 126558K, capacity 132395K, committed 132696K, reserved 1159168K
+  class space    used 22560K, capacity 23517K, committed 23640K, reserved 1048576K
+Event: 88,611 GC heap after
+Heap after GC invocations=36 (full 4):
+ PSYoungGen      total 1418240K, used 229589K [0x000000073e300000, 0x00000007c0000000, 0x00000007c0000000)
+  eden space 709632K, 0% used [0x000000073e300000,0x000000073e300000,0x0000000769800000)
+  from space 708608K, 32% used [0x0000000794c00000,0x00000007a2c356a0,0x00000007c0000000)
+  to   space 708608K, 0% used [0x0000000769800000,0x0000000769800000,0x0000000794c00000)
+ ParOldGen       total 2195456K, used 2022502K [0x000000063a800000, 0x00000006c0800000, 0x000000073e300000)
+  object space 2195456K, 92% used [0x000000063a800000,0x00000006b5f19a20,0x00000006c0800000)
+ Metaspace       used 126558K, capacity 132395K, committed 132696K, reserved 1159168K
+  class space    used 22560K, capacity 23517K, committed 23640K, reserved 1048576K
+}
+Event: 88,615 GC heap before
+{Heap before GC invocations=37 (full 5):
+ PSYoungGen      total 1418240K, used 229589K [0x000000073e300000, 0x00000007c0000000, 0x00000007c0000000)
+  eden space 709632K, 0% used [0x000000073e300000,0x000000073e300000,0x0000000769800000)
+  from space 708608K, 32% used [0x0000000794c00000,0x00000007a2c356a0,0x00000007c0000000)
+  to   space 708608K, 0% used [0x0000000769800000,0x0000000769800000,0x0000000794c00000)
+ ParOldGen       total 2195456K, used 2022502K [0x000000063a800000, 0x00000006c0800000, 0x000000073e300000)
+  object space 2195456K, 92% used [0x000000063a800000,0x00000006b5f19a20,0x00000006c0800000)
+ Metaspace       used 126558K, capacity 132395K, committed 132696K, reserved 1159168K
+  class space    used 22560K, capacity 23517K, committed 23640K, reserved 1048576K
+
+Class unloading (10 events):
+Event: 89,503 Thread 0x00007fd0a408a800 unloaded com.oracle.graal.pointsto.flow.MethodFlowsGraph$$Lambda$233/1596065338 0x00000007c1330c28
+Event: 89,503 Thread 0x00007fd0a408a800 unloaded com.oracle.graal.pointsto.flow.MethodFlowsGraph$$Lambda$232/1711840437 0x00000007c1330828
+Event: 89,503 Thread 0x00007fd0a408a800 unloaded com.oracle.graal.pointsto.flow.MethodTypeFlowBuilder$NodeIterator$$Lambda$228/103244794 0x00000007c132f428
+Event: 89,503 Thread 0x00007fd0a408a800 unloaded com.oracle.graal.pointsto.flow.MethodTypeFlowBuilder$NodeIterator$$Lambda$227/2135423405 0x00000007c132f828
+Event: 89,503 Thread 0x00007fd0a408a800 unloaded java.lang.invoke.LambdaForm$MH/977625217 0x00000007c132ec28
+Event: 89,503 Thread 0x00007fd0a408a800 unloaded com.oracle.graal.pointsto.flow.MethodTypeFlowBuilder$$Lambda$224/256145826 0x00000007c132e828
+Event: 89,503 Thread 0x00007fd0a408a800 unloaded com.oracle.graal.pointsto.flow.MethodTypeFlowBuilder$$Lambda$221/1048245142 0x00000007c132e028
+Event: 89,503 Thread 0x00007fd0a408a800 unloaded com.oracle.graal.pointsto.flow.MethodTypeFlowBuilder$$Lambda$222/1020949909 0x00000007c132dc28
+Event: 89,503 Thread 0x00007fd0a408a800 unloaded com.oracle.graal.pointsto.flow.MethodTypeFlowBuilder$$Lambda$219/81934074 0x00000007c132d028
+Event: 89,503 Thread 0x00007fd0a408a800 unloaded com.oracle.graal.pointsto.flow.MethodTypeFlowBuilder$$Lambda$218/1035675820 0x00000007c132cc28
+
+Deoptimization events (10 events):
+Event: 84,595 Thread 0x00007fc82823b000 Uncommon trap: reason=null_assert_or_unreached0 action=reinterpret pc=0x00007fd09599e3d5 method=org.graalvm.compiler.nodes.calc.SignExtendNode.canonical(Lorg/graalvm/compiler/nodes/calc/SignExtendNode;Lorg/graalvm/compiler/nodes/ValueNode;IILorg/graalvm/c
+Event: 84,736 Thread 0x00007fc820009800 Uncommon trap: reason=null_check action=reinterpret pc=0x00007fd095eca260 method=org.graalvm.compiler.nodes.IfNode.removeIntermediateMaterialization(Lorg/graalvm/compiler/graph/spi/SimplifierTool;)Z @ 251
+Event: 85,532 Thread 0x00007fc828238800 Uncommon trap: reason=intrinsic_or_type_checked_inlining action=reinterpret pc=0x00007fd09601155c method=org.graalvm.compiler.nodes.spi.SwitchFoldable.switchTransformationOptimization(Lorg/graalvm/compiler/graph/spi/SimplifierTool;)Z @ 515
+Event: 85,532 Thread 0x00007fc828238800 Uncommon trap: reason=intrinsic_or_type_checked_inlining action=reinterpret pc=0x00007fd095c69215 method=org.graalvm.compiler.graph.NodeList.add(Lorg/graalvm/compiler/graph/Node;)Z @ 0
+Event: 85,538 Thread 0x00007fc82823b000 Uncommon trap: reason=null_assert_or_unreached0 action=reinterpret pc=0x00007fd096b02ab1 method=org.graalvm.compiler.core.common.calc.Condition.foldCondition(Ljdk/vm/ci/meta/Constant;Ljdk/vm/ci/meta/Constant;Ljdk/vm/ci/meta/ConstantReflectionProvider;Z)Z 
+Event: 85,641 Thread 0x00007fc820009800 Uncommon trap: reason=intrinsic_or_type_checked_inlining action=reinterpret pc=0x00007fd095affbd9 method=org.graalvm.compiler.nodes.calc.CompareNode$CompareOp.canonicalizeSymmetricConstant(Ljdk/vm/ci/meta/ConstantReflectionProvider;Ljdk/vm/ci/meta/MetaAcc
+Event: 86,067 Thread 0x00007fc7fc231000 Uncommon trap: reason=null_assert_or_unreached0 action=reinterpret pc=0x00007fd0969b3261 method=java.util.ArrayList.add(Ljava/lang/Object;)Z @ 27
+Event: 86,164 Thread 0x00007fc828238800 Uncommon trap: reason=null_assert_or_unreached0 action=reinterpret pc=0x00007fd095d3667f method=org.graalvm.compiler.nodes.calc.BinaryArithmeticNode.maybeCommuteInputs()Lorg/graalvm/compiler/nodes/calc/BinaryNode; @ 91
+Event: 86,167 Thread 0x00007fc828238800 Uncommon trap: reason=null_assert_or_unreached0 action=reinterpret pc=0x00007fd095af0dbf method=org.graalvm.compiler.nodes.calc.BinaryArithmeticNode.maybeCommuteInputs()Lorg/graalvm/compiler/nodes/calc/BinaryNode; @ 91
+Event: 87,404 Thread 0x00007fc82823e000 Uncommon trap: reason=intrinsic_or_type_checked_inlining action=reinterpret pc=0x00007fd095949491 method=org.graalvm.compiler.phases.common.inlining.InliningUtil.fixFrameStates(Lorg/graalvm/compiler/nodes/StructuredGraph;Lorg/graalvm/compiler/nodes/MergeN
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (10 events):
+Event: 77,568 Thread 0x00007fc7fc231000 Exception <a 'java/lang/NoSuchMethodError': io.micronaut.validation.validator.extractors.DefaultValueExtractors.setCharArrayValueExtractor(Ljavax/validation/valueextraction/ValueExtractor;)V> (0x0000000772fe39e8) thrown at [/b/b/e/main/graal-jvmci-8/src/s
+Event: 80,653 Thread 0x00007fc82823e000 Implicit null exception at 0x00007fd09665e35a to 0x00007fd0950495ec
+Event: 80,775 Thread 0x00007fc828238800 Implicit null exception at 0x00007fd096564252 to 0x00007fd0950495ec
+Event: 82,200 Thread 0x00007fc82823b000 Implicit null exception at 0x00007fd096f9f516 to 0x00007fd0950495ec
+Event: 82,444 Thread 0x00007fc82823b000 Implicit null exception at 0x00007fd095485b16 to 0x00007fd0950495ec
+Event: 82,444 Thread 0x00007fc82823e000 Implicit null exception at 0x00007fd095485b16 to 0x00007fd0950495ec
+Event: 82,444 Thread 0x00007fc82823c000 Implicit null exception at 0x00007fd095485b16 to 0x00007fd0950495ec
+Event: 84,566 Thread 0x00007fc82823e000 Implicit null exception at 0x00007fd09653b12a to 0x00007fd0950495ec
+Event: 84,566 Thread 0x00007fc82823e000 Implicit null exception at 0x00007fd0956eb6fe to 0x00007fd0950495ec
+Event: 84,736 Thread 0x00007fc820009800 Implicit null exception at 0x00007fd095eca260 to 0x00007fd0950495ec
+
+Events (10 events):
+Event: 87,430 Thread 0x00007fd0a40ce000 flushing nmethod 0x00007fd096eaf0d0
+Event: 87,430 Thread 0x00007fd0a40ce000 flushing nmethod 0x00007fd096ebbc90
+Event: 87,430 Thread 0x00007fd0a40ce000 flushing nmethod 0x00007fd096ebcdd0
+Event: 87,430 Thread 0x00007fd0a40ce000 flushing nmethod 0x00007fd096ebfed0
+Event: 87,431 Thread 0x00007fd0a40ce000 flushing nmethod 0x00007fd096fc7190
+Event: 87,431 Thread 0x00007fd0a40ce000 flushing nmethod 0x00007fd097057350
+Event: 87,431 Thread 0x00007fd0a40ce000 flushing nmethod 0x00007fd097063210
+Event: 87,431 Thread 0x00007fd0a40ce000 flushing nmethod 0x00007fd09707c710
+Event: 87,431 Thread 0x00007fd0a40ce000 flushing nmethod 0x00007fd09709f4d0
+Event: 87,770 Executing VM operation: ParallelGCFailedAllocation
+
+
+Dynamic libraries:
+00400000-00401000 r-xp 00000000 fd:01 14025146                           /home/francois/dev/tools/graalvm-ee-19.2.0/jre/bin/java
+00600000-00601000 r--p 00000000 fd:01 14025146                           /home/francois/dev/tools/graalvm-ee-19.2.0/jre/bin/java
+00601000-00602000 rw-p 00001000 fd:01 14025146                           /home/francois/dev/tools/graalvm-ee-19.2.0/jre/bin/java
+0104c000-0106d000 rw-p 00000000 00:00 0                                  [heap]
+63a800000-6c0800000 rw-p 00000000 00:00 0 
+718300000-73e300000 ---p 00000000 00:00 0 
+73e300000-7c0000000 rw-p 00000000 00:00 0 
+7c0000000-7c1716000 rw-p 00000000 00:00 0 
+7c1716000-800000000 ---p 00000000 00:00 0 
+7fc7a8000000-7fc7a8021000 rw-p 00000000 00:00 0 
+7fc7a8021000-7fc7ac000000 ---p 00000000 00:00 0 
+7fc7af50e000-7fc7af5ff000 ---p 00000000 00:00 0 
+7fc7af5ff000-7fc7af602000 ---p 00000000 00:00 0 
+7fc7af602000-7fc7b0000000 rw-p 00000000 00:00 0 
+7fc7b0000000-7fc7b0021000 rw-p 00000000 00:00 0 
+7fc7b0021000-7fc7b4000000 ---p 00000000 00:00 0 
+7fc7b4000000-7fc7b4021000 rw-p 00000000 00:00 0 
+7fc7b4021000-7fc7b8000000 ---p 00000000 00:00 0 
+7fc7b8000000-7fc7b8021000 rw-p 00000000 00:00 0 
+7fc7b8021000-7fc7bc000000 ---p 00000000 00:00 0 
+7fc7bc0d1000-7fc7bc4bb000 ---p 00000000 00:00 0 
+7fc7bc4bb000-7fc7bc53b000 rw-p 00000000 00:00 0 
+7fc7bc53b000-7fc7bc6bb000 ---p 00000000 00:00 0 
+7fc7bc6bb000-7fc7bc6be000 ---p 00000000 00:00 0 
+7fc7bc6be000-7fc7bd0bc000 rw-p 00000000 00:00 0 
+7fc7bd0bc000-7fc7bd0bf000 ---p 00000000 00:00 0 
+7fc7bd0bf000-7fc7bdabd000 rw-p 00000000 00:00 0 
+7fc7bdabd000-7fc7bdac0000 ---p 00000000 00:00 0 
+7fc7bdac0000-7fc7be4be000 rw-p 00000000 00:00 0 
+7fc7be4be000-7fc7be4c1000 ---p 00000000 00:00 0 
+7fc7be4c1000-7fc7beebf000 rw-p 00000000 00:00 0 
+7fc7beebf000-7fc7beec2000 ---p 00000000 00:00 0 
+7fc7beec2000-7fc7bf8c0000 rw-p 00000000 00:00 0 
+7fc7bf8c0000-7fc7bf8c3000 ---p 00000000 00:00 0 
+7fc7bf8c3000-7fc7c02c1000 rw-p 00000000 00:00 0 
+7fc7c02c1000-7fc7c02c4000 ---p 00000000 00:00 0 
+7fc7c02c4000-7fc7c0cc2000 rw-p 00000000 00:00 0 
+7fc7c0cc2000-7fc7c0cc5000 ---p 00000000 00:00 0 
+7fc7c0cc5000-7fc7c16c3000 rw-p 00000000 00:00 0 
+7fc7c16c3000-7fc7c16c6000 ---p 00000000 00:00 0 
+7fc7c16c6000-7fc7c20c4000 rw-p 00000000 00:00 0 
+7fc7c20c4000-7fc7c20c7000 ---p 00000000 00:00 0 
+7fc7c20c7000-7fc7c2ac5000 rw-p 00000000 00:00 0 
+7fc7c2ac5000-7fc7c2c61000 ---p 00000000 00:00 0 
+7fc7c2c61000-7fc7c2e61000 rw-p 00000000 00:00 0 
+7fc7c2e61000-7fc7c2e74000 r-xp 00000000 fd:01 529045                     /lib/x86_64-linux-gnu/libbsd.so.0.8.7
+7fc7c2e74000-7fc7c3073000 ---p 00013000 fd:01 529045                     /lib/x86_64-linux-gnu/libbsd.so.0.8.7
+7fc7c3073000-7fc7c3074000 r--p 00012000 fd:01 529045                     /lib/x86_64-linux-gnu/libbsd.so.0.8.7
+7fc7c3074000-7fc7c3075000 rw-p 00013000 fd:01 529045                     /lib/x86_64-linux-gnu/libbsd.so.0.8.7
+7fc7c3075000-7fc7c3076000 rw-p 00000000 00:00 0 
+7fc7c3076000-7fc7c307b000 r-xp 00000000 fd:01 6561510                    /usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0
+7fc7c307b000-7fc7c327a000 ---p 00005000 fd:01 6561510                    /usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0
+7fc7c327a000-7fc7c327b000 r--p 00004000 fd:01 6561510                    /usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0
+7fc7c327b000-7fc7c327c000 rw-p 00005000 fd:01 6561510                    /usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0
+7fc7c327c000-7fc7c327e000 r-xp 00000000 fd:01 6561499                    /usr/lib/x86_64-linux-gnu/libXau.so.6.0.0
+7fc7c327e000-7fc7c347e000 ---p 00002000 fd:01 6561499                    /usr/lib/x86_64-linux-gnu/libXau.so.6.0.0
+7fc7c347e000-7fc7c347f000 r--p 00002000 fd:01 6561499                    /usr/lib/x86_64-linux-gnu/libXau.so.6.0.0
+7fc7c347f000-7fc7c3480000 rw-p 00003000 fd:01 6561499                    /usr/lib/x86_64-linux-gnu/libXau.so.6.0.0
+7fc7c3480000-7fc7c34a6000 r-xp 00000000 fd:01 6566444                    /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
+7fc7c34a6000-7fc7c36a6000 ---p 00026000 fd:01 6566444                    /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
+7fc7c36a6000-7fc7c36a7000 r--p 00026000 fd:01 6566444                    /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
+7fc7c36a7000-7fc7c36a8000 rw-p 00027000 fd:01 6566444                    /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
+7fc7c36a8000-7fc7c36b7000 r-xp 00000000 fd:01 6561520                    /usr/lib/x86_64-linux-gnu/libXi.so.6.1.0
+7fc7c36b7000-7fc7c38b6000 ---p 0000f000 fd:01 6561520                    /usr/lib/x86_64-linux-gnu/libXi.so.6.1.0
+7fc7c38b6000-7fc7c38b7000 r--p 0000e000 fd:01 6561520                    /usr/lib/x86_64-linux-gnu/libXi.so.6.1.0
+7fc7c38b7000-7fc7c38b8000 rw-p 0000f000 fd:01 6561520                    /usr/lib/x86_64-linux-gnu/libXi.so.6.1.0
+7fc7c38b8000-7fc7c38bd000 r-xp 00000000 fd:01 6561538                    /usr/lib/x86_64-linux-gnu/libXtst.so.6.1.0
+7fc7c38bd000-7fc7c3abc000 ---p 00005000 fd:01 6561538                    /usr/lib/x86_64-linux-gnu/libXtst.so.6.1.0
+7fc7c3abc000-7fc7c3abd000 r--p 00004000 fd:01 6561538                    /usr/lib/x86_64-linux-gnu/libXtst.so.6.1.0
+7fc7c3abd000-7fc7c3abe000 rw-p 00005000 fd:01 6561538                    /usr/lib/x86_64-linux-gnu/libXtst.so.6.1.0
+7fc7c3abe000-7fc7c3ac7000 r-xp 00000000 fd:01 6561532                    /usr/lib/x86_64-linux-gnu/libXrender.so.1.3.0
+7fc7c3ac7000-7fc7c3cc6000 ---p 00009000 fd:01 6561532                    /usr/lib/x86_64-linux-gnu/libXrender.so.1.3.0
+7fc7c3cc6000-7fc7c3cc7000 r--p 00008000 fd:01 6561532                    /usr/lib/x86_64-linux-gnu/libXrender.so.1.3.0
+7fc7c3cc7000-7fc7c3cc8000 rw-p 00009000 fd:01 6561532                    /usr/lib/x86_64-linux-gnu/libXrender.so.1.3.0
+7fc7c3cc8000-7fc7c3dfb000 r-xp 00000000 fd:01 6557591                    /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0
+7fc7c3dfb000-7fc7c3ffb000 ---p 00133000 fd:01 6557591                    /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0
+7fc7c3ffb000-7fc7c3ffc000 r--p 00133000 fd:01 6557591                    /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0
+7fc7c3ffc000-7fc7c4000000 rw-p 00134000 fd:01 6557591                    /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0
+7fc7c4000000-7fc7c433c000 rw-p 00000000 00:00 0 
+7fc7c433c000-7fc7c8000000 ---p 00000000 00:00 0 
+7fc7c8000000-7fc7c810d000 rw-p 00000000 00:00 0 
+7fc7c810d000-7fc7cc000000 ---p 00000000 00:00 0 
+7fc7cc000000-7fc7cc110000 rw-p 00000000 00:00 0 
+7fc7cc110000-7fc7d0000000 ---p 00000000 00:00 0 
+7fc7d0000000-7fc7d015c000 rw-p 00000000 00:00 0 
+7fc7d015c000-7fc7d4000000 ---p 00000000 00:00 0 
+7fc7d4022000-7fc7d41a1000 ---p 00000000 00:00 0 
+7fc7d41a1000-7fc7d41a4000 r-xp 00000000 fd:01 529103                     /lib/x86_64-linux-gnu/libkeyutils.so.1.5
+7fc7d41a4000-7fc7d43a3000 ---p 00003000 fd:01 529103                     /lib/x86_64-linux-gnu/libkeyutils.so.1.5
+7fc7d43a3000-7fc7d43a4000 r--p 00002000 fd:01 529103                     /lib/x86_64-linux-gnu/libkeyutils.so.1.5
+7fc7d43a4000-7fc7d43a5000 rw-p 00003000 fd:01 529103                     /lib/x86_64-linux-gnu/libkeyutils.so.1.5
+7fc7d43a5000-7fc7d43af000 r-xp 00000000 fd:01 6557566                    /usr/lib/x86_64-linux-gnu/libkrb5support.so.0.1
+7fc7d43af000-7fc7d45ae000 ---p 0000a000 fd:01 6557566                    /usr/lib/x86_64-linux-gnu/libkrb5support.so.0.1
+7fc7d45ae000-7fc7d45af000 r--p 00009000 fd:01 6557566                    /usr/lib/x86_64-linux-gnu/libkrb5support.so.0.1
+7fc7d45af000-7fc7d45b0000 rw-p 0000a000 fd:01 6557566                    /usr/lib/x86_64-linux-gnu/libkrb5support.so.0.1
+7fc7d45b0000-7fc7d45b3000 r-xp 00000000 fd:01 528938                     /lib/x86_64-linux-gnu/libcom_err.so.2.1
+7fc7d45b3000-7fc7d47b2000 ---p 00003000 fd:01 528938                     /lib/x86_64-linux-gnu/libcom_err.so.2.1
+7fc7d47b2000-7fc7d47b3000 r--p 00002000 fd:01 528938                     /lib/x86_64-linux-gnu/libcom_err.so.2.1
+7fc7d47b3000-7fc7d47b4000 rw-p 00003000 fd:01 528938                     /lib/x86_64-linux-gnu/libcom_err.so.2.1
+7fc7d47b4000-7fc7d47e2000 r-xp 00000000 fd:01 6557560                    /usr/lib/x86_64-linux-gnu/libk5crypto.so.3.1
+7fc7d47e2000-7fc7d49e2000 ---p 0002e000 fd:01 6557560                    /usr/lib/x86_64-linux-gnu/libk5crypto.so.3.1
+7fc7d49e2000-7fc7d49e4000 r--p 0002e000 fd:01 6557560                    /usr/lib/x86_64-linux-gnu/libk5crypto.so.3.1
+7fc7d49e4000-7fc7d49e5000 rw-p 00030000 fd:01 6557560                    /usr/lib/x86_64-linux-gnu/libk5crypto.so.3.1
+7fc7d49e5000-7fc7d49e6000 rw-p 00000000 00:00 0 
+7fc7d49e6000-7fc7d4aac000 r-xp 00000000 fd:01 6557564                    /usr/lib/x86_64-linux-gnu/libkrb5.so.3.3
+7fc7d4aac000-7fc7d4cac000 ---p 000c6000 fd:01 6557564                    /usr/lib/x86_64-linux-gnu/libkrb5.so.3.3
+7fc7d4cac000-7fc7d4cba000 r--p 000c6000 fd:01 6557564                    /usr/lib/x86_64-linux-gnu/libkrb5.so.3.3
+7fc7d4cba000-7fc7d4cbc000 rw-p 000d4000 fd:01 6557564                    /usr/lib/x86_64-linux-gnu/libkrb5.so.3.3
+7fc7d4cbc000-7fc7d4d04000 r-xp 00000000 fd:01 6557562                    /usr/lib/x86_64-linux-gnu/libgssapi_krb5.so.2.2
+7fc7d4d04000-7fc7d4f03000 ---p 00048000 fd:01 6557562                    /usr/lib/x86_64-linux-gnu/libgssapi_krb5.so.2.2
+7fc7d4f03000-7fc7d4f05000 r--p 00047000 fd:01 6557562                    /usr/lib/x86_64-linux-gnu/libgssapi_krb5.so.2.2
+7fc7d4f05000-7fc7d4f07000 rw-p 00049000 fd:01 6557562                    /usr/lib/x86_64-linux-gnu/libgssapi_krb5.so.2.2
+7fc7d4f27000-7fc7d4f30000 r-xp 00000000 fd:01 12063149                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/libj2gss.so
+7fc7d4f30000-7fc7d512f000 ---p 00009000 fd:01 12063149                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/libj2gss.so
+7fc7d512f000-7fc7d5130000 r--p 00008000 fd:01 12063149                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/libj2gss.so
+7fc7d5130000-7fc7d5131000 rw-p 00009000 fd:01 12063149                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/libj2gss.so
+7fc7d5131000-7fc7d55ea000 ---p 00000000 00:00 0 
+7fc7d55ea000-7fc7d57ea000 rw-p 00000000 00:00 0 
+7fc7d57ea000-7fc7d5aa4000 ---p 00000000 00:00 0 
+7fc7d5aa4000-7fc7d5ca4000 rw-p 00000000 00:00 0 
+7fc7d5ca4000-7fc7d5d74000 ---p 00000000 00:00 0 
+7fc7d5d74000-7fc7d5f74000 rw-p 00000000 00:00 0 
+7fc7d5f74000-7fc7d5ffd000 ---p 00000000 00:00 0 
+7fc7d5ffd000-7fc7d61fd000 rw-p 00000000 00:00 0 
+7fc7d61fd000-7fc7d6200000 ---p 00000000 00:00 0 
+7fc7d6200000-7fc7d6bfe000 rw-p 00000000 00:00 0 
+7fc7d6bfe000-7fc7d6c01000 ---p 00000000 00:00 0 
+7fc7d6c01000-7fc7d75ff000 rw-p 00000000 00:00 0 
+7fc7d75ff000-7fc7d7602000 ---p 00000000 00:00 0 
+7fc7d7602000-7fc7d8000000 rw-p 00000000 00:00 0 
+7fc7d8000000-7fc7d80ff000 rw-p 00000000 00:00 0 
+7fc7d80ff000-7fc7dc000000 ---p 00000000 00:00 0 
+7fc7dc000000-7fc7dc184000 rw-p 00000000 00:00 0 
+7fc7dc184000-7fc7e0000000 ---p 00000000 00:00 0 
+7fc7e0000000-7fc7e0021000 rw-p 00000000 00:00 0 
+7fc7e0021000-7fc7e4000000 ---p 00000000 00:00 0 
+7fc7e4015000-7fc7e4108000 ---p 00000000 00:00 0 
+7fc7e4108000-7fc7e410b000 ---p 00000000 00:00 0 
+7fc7e410b000-7fc7e4b09000 rw-p 00000000 00:00 0 
+7fc7e4b09000-7fc7e4b0c000 ---p 00000000 00:00 0 
+7fc7e4b0c000-7fc7e550a000 rw-p 00000000 00:00 0 
+7fc7e550a000-7fc7e550d000 ---p 00000000 00:00 0 
+7fc7e550d000-7fc7e610b000 rw-p 00000000 00:00 0 
+7fc7e610b000-7fc7e6122000 r-xp 00000000 fd:01 531090                     /lib/x86_64-linux-gnu/libgcc_s.so.1
+7fc7e6122000-7fc7e6321000 ---p 00017000 fd:01 531090                     /lib/x86_64-linux-gnu/libgcc_s.so.1
+7fc7e6321000-7fc7e6322000 r--p 00016000 fd:01 531090                     /lib/x86_64-linux-gnu/libgcc_s.so.1
+7fc7e6322000-7fc7e6323000 rw-p 00017000 fd:01 531090                     /lib/x86_64-linux-gnu/libgcc_s.so.1
+7fc7e6323000-7fc7e635b000 r-xp 00000000 fd:01 12063125                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/libsunec.so
+7fc7e635b000-7fc7e655a000 ---p 00038000 fd:01 12063125                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/libsunec.so
+7fc7e655a000-7fc7e655f000 r--p 00037000 fd:01 12063125                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/libsunec.so
+7fc7e655f000-7fc7e6561000 rw-p 0003c000 fd:01 12063125                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/libsunec.so
+7fc7e6561000-7fc7e6761000 rw-p 00000000 00:00 0 
+7fc7e6761000-7fc7e6961000 rw-p 00000000 00:00 0 
+7fc7e6961000-7fc7e6b61000 rw-p 00000000 00:00 0 
+7fc7e6b61000-7fc7e6b81000 r-xp 00000000 fd:01 6553889                    /usr/lib/x86_64-linux-gnu/libmagic.so.1.0.0
+7fc7e6b81000-7fc7e6d80000 ---p 00020000 fd:01 6553889                    /usr/lib/x86_64-linux-gnu/libmagic.so.1.0.0
+7fc7e6d80000-7fc7e6d82000 r--p 0001f000 fd:01 6553889                    /usr/lib/x86_64-linux-gnu/libmagic.so.1.0.0
+7fc7e6d82000-7fc7e6d83000 rw-p 00021000 fd:01 6553889                    /usr/lib/x86_64-linux-gnu/libmagic.so.1.0.0
+7fc7e6d83000-7fc7e6d89000 r-xp 00000000 fd:01 530590                     /lib/x86_64-linux-gnu/libuuid.so.1.3.0
+7fc7e6d89000-7fc7e6f88000 ---p 00006000 fd:01 530590                     /lib/x86_64-linux-gnu/libuuid.so.1.3.0
+7fc7e6f88000-7fc7e6f89000 r--p 00005000 fd:01 530590                     /lib/x86_64-linux-gnu/libuuid.so.1.3.0
+7fc7e6f89000-7fc7e6f8a000 rw-p 00006000 fd:01 530590                     /lib/x86_64-linux-gnu/libuuid.so.1.3.0
+7fc7e6f8a000-7fc7e6fd1000 r-xp 00000000 fd:01 528945                     /lib/x86_64-linux-gnu/libblkid.so.1.1.0
+7fc7e6fd1000-7fc7e71d1000 ---p 00047000 fd:01 528945                     /lib/x86_64-linux-gnu/libblkid.so.1.1.0
+7fc7e71d1000-7fc7e71d5000 r--p 00047000 fd:01 528945                     /lib/x86_64-linux-gnu/libblkid.so.1.1.0
+7fc7e71d5000-7fc7e71d6000 rw-p 0004b000 fd:01 528945                     /lib/x86_64-linux-gnu/libblkid.so.1.1.0
+7fc7e71d6000-7fc7e71d7000 rw-p 00000000 00:00 0 
+7fc7e71d7000-7fc7e7247000 r-xp 00000000 fd:01 529171                     /lib/x86_64-linux-gnu/libpcre.so.3.13.3
+7fc7e7247000-7fc7e7447000 ---p 00070000 fd:01 529171                     /lib/x86_64-linux-gnu/libpcre.so.3.13.3
+7fc7e7447000-7fc7e7448000 r--p 00070000 fd:01 529171                     /lib/x86_64-linux-gnu/libpcre.so.3.13.3
+7fc7e7448000-7fc7e7449000 rw-p 00071000 fd:01 529171                     /lib/x86_64-linux-gnu/libpcre.so.3.13.3
+7fc7e7449000-7fc7e7450000 r-xp 00000000 fd:01 6561841                    /usr/lib/x86_64-linux-gnu/libffi.so.6.0.4
+7fc7e7450000-7fc7e764f000 ---p 00007000 fd:01 6561841                    /usr/lib/x86_64-linux-gnu/libffi.so.6.0.4
+7fc7e764f000-7fc7e7650000 r--p 00006000 fd:01 6561841                    /usr/lib/x86_64-linux-gnu/libffi.so.6.0.4
+7fc7e7650000-7fc7e7651000 rw-p 00007000 fd:01 6561841                    /usr/lib/x86_64-linux-gnu/libffi.so.6.0.4
+7fc7e7651000-7fc7e76a2000 r-xp 00000000 fd:01 528960                     /lib/x86_64-linux-gnu/libmount.so.1.1.0
+7fc7e76a2000-7fc7e78a1000 ---p 00051000 fd:01 528960                     /lib/x86_64-linux-gnu/libmount.so.1.1.0
+7fc7e78a1000-7fc7e78a3000 r--p 00050000 fd:01 528960                     /lib/x86_64-linux-gnu/libmount.so.1.1.0
+7fc7e78a3000-7fc7e78a4000 rw-p 00052000 fd:01 528960                     /lib/x86_64-linux-gnu/libmount.so.1.1.0
+7fc7e78a4000-7fc7e78a5000 rw-p 00000000 00:00 0 
+7fc7e78a5000-7fc7e78bc000 r-xp 00000000 fd:01 529188                     /lib/x86_64-linux-gnu/libresolv-2.27.so
+7fc7e78bc000-7fc7e7abc000 ---p 00017000 fd:01 529188                     /lib/x86_64-linux-gnu/libresolv-2.27.so
+7fc7e7abc000-7fc7e7abd000 r--p 00017000 fd:01 529188                     /lib/x86_64-linux-gnu/libresolv-2.27.so
+7fc7e7abd000-7fc7e7abe000 rw-p 00018000 fd:01 529188                     /lib/x86_64-linux-gnu/libresolv-2.27.so
+7fc7e7abe000-7fc7e7ac0000 rw-p 00000000 00:00 0 
+7fc7e7ac0000-7fc7e7ae5000 r-xp 00000000 fd:01 529194                     /lib/x86_64-linux-gnu/libselinux.so.1
+7fc7e7ae5000-7fc7e7ce4000 ---p 00025000 fd:01 529194                     /lib/x86_64-linux-gnu/libselinux.so.1
+7fc7e7ce4000-7fc7e7ce5000 r--p 00024000 fd:01 529194                     /lib/x86_64-linux-gnu/libselinux.so.1
+7fc7e7ce5000-7fc7e7ce6000 rw-p 00025000 fd:01 529194                     /lib/x86_64-linux-gnu/libselinux.so.1
+7fc7e7ce6000-7fc7e7ce8000 rw-p 00000000 00:00 0 
+7fc7e7ce8000-7fc7e7dfc000 r-xp 00000000 fd:01 6556977                    /usr/lib/x86_64-linux-gnu/libglib-2.0.so.0.5600.4
+7fc7e7dfc000-7fc7e7ffc000 ---p 00114000 fd:01 6556977                    /usr/lib/x86_64-linux-gnu/libglib-2.0.so.0.5600.4
+7fc7e7ffc000-7fc7e7ffd000 r--p 00114000 fd:01 6556977                    /usr/lib/x86_64-linux-gnu/libglib-2.0.so.0.5600.4
+7fc7e7ffd000-7fc7e7ffe000 rw-p 00115000 fd:01 6556977                    /usr/lib/x86_64-linux-gnu/libglib-2.0.so.0.5600.4
+7fc7e7ffe000-7fc7e7fff000 rw-p 00000000 00:00 0 
+7fc7e7fff000-7fc7e8002000 r-xp 00000000 fd:01 6556978                    /usr/lib/x86_64-linux-gnu/libgmodule-2.0.so.0.5600.4
+7fc7e8002000-7fc7e8201000 ---p 00003000 fd:01 6556978                    /usr/lib/x86_64-linux-gnu/libgmodule-2.0.so.0.5600.4
+7fc7e8201000-7fc7e8202000 r--p 00002000 fd:01 6556978                    /usr/lib/x86_64-linux-gnu/libgmodule-2.0.so.0.5600.4
+7fc7e8202000-7fc7e8203000 rw-p 00003000 fd:01 6556978                    /usr/lib/x86_64-linux-gnu/libgmodule-2.0.so.0.5600.4
+7fc7e8203000-7fc7e8255000 r-xp 00000000 fd:01 6558139                    /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.5600.4
+7fc7e8255000-7fc7e8455000 ---p 00052000 fd:01 6558139                    /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.5600.4
+7fc7e8455000-7fc7e8456000 r--p 00052000 fd:01 6558139                    /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.5600.4
+7fc7e8456000-7fc7e8457000 rw-p 00053000 fd:01 6558139                    /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.5600.4
+7fc7e8457000-7fc7e85ec000 r-xp 00000000 fd:01 6556924                    /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.5600.4
+7fc7e85ec000-7fc7e87ec000 ---p 00195000 fd:01 6556924                    /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.5600.4
+7fc7e87ec000-7fc7e87f3000 r--p 00195000 fd:01 6556924                    /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.5600.4
+7fc7e87f3000-7fc7e87f4000 rw-p 0019c000 fd:01 6556924                    /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.5600.4
+7fc7e87f4000-7fc7e89f6000 rw-p 00000000 00:00 0 
+7fc7e89f6000-7fc7e89ff000 r-xp 00000000 fd:01 12063168                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/libmanagement.so
+7fc7e89ff000-7fc7e8bfe000 ---p 00009000 fd:01 12063168                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/libmanagement.so
+7fc7e8bfe000-7fc7e8bff000 r--p 00008000 fd:01 12063168                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/libmanagement.so
+7fc7e8bff000-7fc7e8c00000 rw-p 00009000 fd:01 12063168                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/libmanagement.so
+7fc7e8c00000-7fc7e8e00000 rw-p 00000000 00:00 0 
+7fc7e8e00000-7fc7e9000000 rw-p 00000000 00:00 0 
+7fc7e9000000-7fc7e9200000 rw-p 00000000 00:00 0 
+7fc7e9200000-7fc7e9400000 rw-p 00000000 00:00 0 
+7fc7e9400000-7fc7e9600000 rw-p 00000000 00:00 0 
+7fc7e9600000-7fc7e9800000 rw-p 00000000 00:00 0 
+7fc7e9800000-7fc7e9a00000 rw-p 00000000 00:00 0 
+7fc7e9a00000-7fc7e9c00000 rw-p 00000000 00:00 0 
+7fc7e9c00000-7fc7e9e00000 rw-p 00000000 00:00 0 
+7fc7e9e00000-7fc7ea000000 rw-p 00000000 00:00 0 
+7fc7ea000000-7fc7ea200000 rw-p 00000000 00:00 0 
+7fc7ea200000-7fc7ea400000 rw-p 00000000 00:00 0 
+7fc7ea400000-7fc7ea600000 rw-p 00000000 00:00 0 
+7fc7ea600000-7fc7ea800000 rw-p 00000000 00:00 0 
+7fc7ea800000-7fc7eaa00000 rw-p 00000000 00:00 0 
+7fc7eaa00000-7fc7eac00000 rw-p 00000000 00:00 0 
+7fc7eac00000-7fc7eae00000 rw-p 00000000 00:00 0 
+7fc7eae00000-7fc7eb000000 rw-p 00000000 00:00 0 
+7fc7eb000000-7fc7eb200000 rw-p 00000000 00:00 0 
+7fc7eb200000-7fc7eb400000 rw-p 00000000 00:00 0 
+7fc7eb400000-7fc7eb600000 rw-p 00000000 00:00 0 
+7fc7eb600000-7fc7eb800000 rw-p 00000000 00:00 0 
+7fc7eb800000-7fc7eba00000 rw-p 00000000 00:00 0 
+7fc7eba00000-7fc7ebc00000 rw-p 00000000 00:00 0 
+7fc7ebc00000-7fc7ebe00000 rw-p 00000000 00:00 0 
+7fc7ebe00000-7fc7ec000000 rw-p 00000000 00:00 0 
+7fc7ec000000-7fc7ec291000 rw-p 00000000 00:00 0 
+7fc7ec291000-7fc7f0000000 ---p 00000000 00:00 0 
+7fc7f0000000-7fc7f01fb000 rw-p 00000000 00:00 0 
+7fc7f01fb000-7fc7f4000000 ---p 00000000 00:00 0 
+7fc7f4000000-7fc7f43b6000 rw-p 00000000 00:00 0 
+7fc7f43b6000-7fc7f8000000 ---p 00000000 00:00 0 
+7fc7f8000000-7fc7f82e9000 rw-p 00000000 00:00 0 
+7fc7f82e9000-7fc7fc000000 ---p 00000000 00:00 0 
+7fc7fc000000-7fc7fc23b000 rw-p 00000000 00:00 0 
+7fc7fc23b000-7fc800000000 ---p 00000000 00:00 0 
+7fc800000000-7fc80022d000 rw-p 00000000 00:00 0 
+7fc80022d000-7fc804000000 ---p 00000000 00:00 0 
+7fc804000000-7fc8042f5000 rw-p 00000000 00:00 0 
+7fc8042f5000-7fc808000000 ---p 00000000 00:00 0 
+7fc808000000-7fc808380000 rw-p 00000000 00:00 0 
+7fc808380000-7fc80c000000 ---p 00000000 00:00 0 
+7fc80c000000-7fc80c1f5000 rw-p 00000000 00:00 0 
+7fc80c1f5000-7fc810000000 ---p 00000000 00:00 0 
+7fc810000000-7fc810021000 rw-p 00000000 00:00 0 
+7fc810021000-7fc814000000 ---p 00000000 00:00 0 
+7fc814000000-7fc81403a000 rw-p 00000000 00:00 0 
+7fc81403a000-7fc818000000 ---p 00000000 00:00 0 
+7fc818000000-7fc818021000 rw-p 00000000 00:00 0 
+7fc818021000-7fc81c000000 ---p 00000000 00:00 0 
+7fc81c000000-7fc81c065000 rw-p 00000000 00:00 0 
+7fc81c065000-7fc820000000 ---p 00000000 00:00 0 
+7fc820000000-7fc820035000 rw-p 00000000 00:00 0 
+7fc820035000-7fc824000000 ---p 00000000 00:00 0 
+7fc824000000-7fc82432d000 rw-p 00000000 00:00 0 
+7fc82432d000-7fc828000000 ---p 00000000 00:00 0 
+7fc828000000-7fc828240000 rw-p 00000000 00:00 0 
+7fc828240000-7fc82c000000 ---p 00000000 00:00 0 
+7fc82c000000-7fc82cd7a000 r--p 01960000 fd:01 12062936                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/libjvmcicompiler.so
+7fc82cd7a000-7fc82cebd000 r--p 00000000 00:00 0 
+7fc82cebd000-7fc82d071000 rw-p 0281d000 fd:01 12062936                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/libjvmcicompiler.so
+7fc82d071000-7fc82d0fd000 rw-p 00000000 00:00 0 
+7fc82d0fd000-7fc82d100000 ---p 00000000 00:00 0 
+7fc82d100000-7fc83dd00000 rw-p 00000000 00:00 0 
+7fc83dd00000-7fc83e0f3000 rw-p 00000000 00:00 0 
+7fc83e0f3000-7fc83e100000 ---p 00000000 00:00 0 
+7fc83e100000-7fc83e4f3000 rw-p 00000000 00:00 0 
+7fc83e4f3000-7fc83e500000 ---p 00000000 00:00 0 
+7fc83e500000-7fc83ef00000 rw-p 00000000 00:00 0 
+7fc83ef00000-7fc83f400000 rw-p 00000000 00:00 0 
+7fc83f400000-7fd02c000000 ---p 00000000 00:00 0 
+7fd02c000000-7fd02c021000 rw-p 00000000 00:00 0 
+7fd02c021000-7fd030000000 ---p 00000000 00:00 0 
+7fd030000000-7fd030021000 rw-p 00000000 00:00 0 
+7fd030021000-7fd034000000 ---p 00000000 00:00 0 
+7fd034000000-7fd0341ce000 rw-p 00000000 00:00 0 
+7fd0341ce000-7fd038000000 ---p 00000000 00:00 0 
+7fd038000000-7fd0395d9000 rw-p 00000000 00:00 0 
+7fd0395d9000-7fd03c000000 ---p 00000000 00:00 0 
+7fd03c000000-7fd03c209000 rw-p 00000000 00:00 0 
+7fd03c209000-7fd040000000 ---p 00000000 00:00 0 
+7fd040000000-7fd0401ec000 rw-p 00000000 00:00 0 
+7fd0401ec000-7fd044000000 ---p 00000000 00:00 0 
+7fd044000000-7fd044021000 rw-p 00000000 00:00 0 
+7fd044021000-7fd048000000 ---p 00000000 00:00 0 
+7fd048000000-7fd048021000 rw-p 00000000 00:00 0 
+7fd048021000-7fd04c000000 ---p 00000000 00:00 0 
+7fd04c000000-7fd04c021000 rw-p 00000000 00:00 0 
+7fd04c021000-7fd050000000 ---p 00000000 00:00 0 
+7fd050004000-7fd05013b000 ---p 00000000 00:00 0 
+7fd05013b000-7fd05033b000 rw-p 00000000 00:00 0 
+7fd05033b000-7fd05053b000 rw-p 00000000 00:00 0 
+7fd05053b000-7fd05073b000 rw-p 00000000 00:00 0 
+7fd05073b000-7fd05093b000 rw-p 00000000 00:00 0 
+7fd05093b000-7fd050b3b000 rw-p 00000000 00:00 0 
+7fd050b3b000-7fd050b3e000 ---p 00000000 00:00 0 
+7fd050b3e000-7fd05153c000 rw-p 00000000 00:00 0 
+7fd051544000-7fd051615000 ---p 00000000 00:00 0 
+7fd051615000-7fd051618000 r-xp 00000000 fd:01 12063133                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/libj2pcsc.so
+7fd051618000-7fd051817000 ---p 00003000 fd:01 12063133                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/libj2pcsc.so
+7fd051817000-7fd051818000 r--p 00002000 fd:01 12063133                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/libj2pcsc.so
+7fd051818000-7fd051819000 rw-p 00003000 fd:01 12063133                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/libj2pcsc.so
+7fd051819000-7fd051881000 ---p 00000000 00:00 0 
+7fd051881000-7fd051a81000 rw-p 00000000 00:00 0 
+7fd051a81000-7fd051f40000 ---p 00000000 00:00 0 
+7fd051f40000-7fd05293e000 rw-p 00000000 00:00 0 
+7fd052971000-7fd052d19000 ---p 00000000 00:00 0 
+7fd052d19000-7fd052f19000 rw-p 00000000 00:00 0 
+7fd052f19000-7fd052f3c000 ---p 00000000 00:00 0 
+7fd052f3c000-7fd05313c000 rw-p 00000000 00:00 0 
+7fd05313c000-7fd05333f000 ---p 00000000 00:00 0 
+7fd05333f000-7fd053342000 ---p 00000000 00:00 0 
+7fd053342000-7fd060000000 rw-p 00000000 00:00 0 
+7fd060000000-7fd060114000 rw-p 00000000 00:00 0 
+7fd060114000-7fd064000000 ---p 00000000 00:00 0 
+7fd064000000-7fd0643c8000 rw-p 00000000 00:00 0 
+7fd0643c8000-7fd068000000 ---p 00000000 00:00 0 
+7fd068000000-7fd06818b000 rw-p 00000000 00:00 0 
+7fd06818b000-7fd06c000000 ---p 00000000 00:00 0 
+7fd06c000000-7fd06c183000 rw-p 00000000 00:00 0 
+7fd06c183000-7fd070000000 ---p 00000000 00:00 0 
+7fd070000000-7fd07014f000 rw-p 00000000 00:00 0 
+7fd07014f000-7fd074000000 ---p 00000000 00:00 0 
+7fd074009000-7fd07404f000 ---p 00000000 00:00 0 
+7fd07404f000-7fd074075000 r--p 00000000 fd:01 7873717                    /usr/share/locale-langpack/fr/LC_MESSAGES/libc.mo
+7fd074075000-7fd074149000 ---p 00000000 00:00 0 
+7fd074149000-7fd07417f000 rw-p 00000000 00:00 0 
+7fd07417f000-7fd0741e7000 ---p 00000000 00:00 0 
+7fd0741e7000-7fd0741fa000 r--s 00345000 fd:01 12063216                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/resources.jar
+7fd0741fa000-7fd0743fa000 rw-p 00000000 00:00 0 
+7fd074405000-7fd074699000 ---p 00000000 00:00 0 
+7fd074699000-7fd0746aa000 r-xp 00000000 fd:01 6561512                    /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0
+7fd0746aa000-7fd0748a9000 ---p 00011000 fd:01 6561512                    /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0
+7fd0748a9000-7fd0748aa000 r--p 00010000 fd:01 6561512                    /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0
+7fd0748aa000-7fd0748ab000 rw-p 00011000 fd:01 6561512                    /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0
+7fd0748cb000-7fd074926000 r-xp 00000000 fd:01 12063174                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/libawt_xawt.so
+7fd074926000-7fd074b25000 ---p 0005b000 fd:01 12063174                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/libawt_xawt.so
+7fd074b25000-7fd074b26000 r--p 0005a000 fd:01 12063174                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/libawt_xawt.so
+7fd074b26000-7fd074b29000 rw-p 0005b000 fd:01 12063174                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/libawt_xawt.so
+7fd074b29000-7fd074b2b000 rw-p 00000000 00:00 0 
+7fd074b2b000-7fd074bcb000 r-xp 00000000 fd:01 12063175                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/libawt.so
+7fd074bcb000-7fd074dca000 ---p 000a0000 fd:01 12063175                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/libawt.so
+7fd074dca000-7fd074dcb000 r--p 0009f000 fd:01 12063175                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/libawt.so
+7fd074dcb000-7fd074dd6000 rw-p 000a0000 fd:01 12063175                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/libawt.so
+7fd074dd6000-7fd074dfb000 rw-p 00000000 00:00 0 
+7fd074dfb000-7fd074dfe000 ---p 00000000 00:00 0 
+7fd074dfe000-7fd0757fc000 rw-p 00000000 00:00 0 
+7fd0757fc000-7fd0757ff000 ---p 00000000 00:00 0 
+7fd0757ff000-7fd0761fd000 rw-p 00000000 00:00 0 
+7fd0761fd000-7fd076200000 ---p 00000000 00:00 0 
+7fd076200000-7fd076bfe000 rw-p 00000000 00:00 0 
+7fd076bfe000-7fd076c01000 ---p 00000000 00:00 0 
+7fd076c01000-7fd0775ff000 rw-p 00000000 00:00 0 
+7fd077608000-7fd078000000 ---p 00000000 00:00 0 
+7fd078000000-7fd0780c4000 rw-p 00000000 00:00 0 
+7fd0780c4000-7fd07c000000 ---p 00000000 00:00 0 
+7fd07c009000-7fd07c00d000 r--s 0003b000 fd:01 530546                     /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/ext/sunpkcs11.jar
+7fd07c00d000-7fd07c029000 r--s 00393000 fd:01 530538                     /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/ext/cldrdata.jar
+7fd07c029000-7fd07c02c000 ---p 00000000 00:00 0 
+7fd07c02c000-7fd07ca2a000 rw-p 00000000 00:00 0 
+7fd07ca42000-7fd07cfdc000 ---p 00000000 00:00 0 
+7fd07cfdc000-7fd07d1dc000 rw-p 00000000 00:00 0 
+7fd07d1dc000-7fd07d42b000 ---p 00000000 00:00 0 
+7fd07d42b000-7fd07fdfc000 r-xp 00000000 fd:01 12062936                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/libjvmcicompiler.so
+7fd07fdfc000-7fd07fffc000 ---p 029d1000 fd:01 12062936                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/libjvmcicompiler.so
+7fd07fffc000-7fd080000000 rw-p 029d1000 fd:01 12062936                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/libjvmcicompiler.so
+7fd080000000-7fd08014a000 rw-p 00000000 00:00 0 
+7fd08014a000-7fd084000000 ---p 00000000 00:00 0 
+7fd084000000-7fd084007000 r--s 00000000 fd:01 6818629                    /usr/lib/x86_64-linux-gnu/gconv/gconv-modules.cache
+7fd084007000-7fd08400c000 r--s 002f9000 fd:01 12063228                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/charsets.jar
+7fd08400c000-7fd084016000 r--s 00116000 fd:01 530540                     /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/ext/localedata.jar
+7fd084016000-7fd08401b000 r--s 000a3000 fd:01 12063083                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/jsse.jar
+7fd08401b000-7fd084021000 r--s 0003f000 fd:01 530542                     /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/ext/sunjce_provider.jar
+7fd084021000-7fd0840ad000 ---p 00000000 00:00 0 
+7fd0840ad000-7fd0841a1000 r--s 00b62000 fd:01 668983                     /home/francois/dev/projects/gfi/midis-techniques/midi-tech-micronaut-quarkus/demo/micronaut-graalvm/target/micronaut-graalvm-0.1.jar
+7fd0841a1000-7fd0841c4000 ---p 00000000 00:00 0 
+7fd0841d2000-7fd084466000 ---p 00000000 00:00 0 
+7fd084466000-7fd084666000 rw-p 00000000 00:00 0 
+7fd084666000-7fd08493a000 ---p 00000000 00:00 0 
+7fd08493a000-7fd084b3a000 rw-p 00000000 00:00 0 
+7fd084b3a000-7fd084bc5000 ---p 00000000 00:00 0 
+7fd084bc5000-7fd084bc8000 ---p 00000000 00:00 0 
+7fd084bc8000-7fd0857c6000 rw-p 00000000 00:00 0 
+7fd0857c6000-7fd0857dc000 r-xp 00000000 fd:01 12063166                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/libnet.so
+7fd0857dc000-7fd0859db000 ---p 00016000 fd:01 12063166                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/libnet.so
+7fd0859db000-7fd0859dc000 r--p 00015000 fd:01 12063166                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/libnet.so
+7fd0859dc000-7fd0859dd000 rw-p 00016000 fd:01 12063166                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/libnet.so
+7fd0859dd000-7fd0859ee000 r-xp 00000000 fd:01 12063152                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/libnio.so
+7fd0859ee000-7fd085bed000 ---p 00011000 fd:01 12063152                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/libnio.so
+7fd085bed000-7fd085bee000 r--p 00010000 fd:01 12063152                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/libnio.so
+7fd085bee000-7fd085bef000 rw-p 00011000 fd:01 12063152                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/libnio.so
+7fd085bef000-7fd085bf2000 ---p 00000000 00:00 0 
+7fd085bf2000-7fd0865f0000 rw-p 00000000 00:00 0 
+7fd0865f0000-7fd086642000 r--s 0090f000 fd:01 12717428                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/svm/builder/svm.jar
+7fd086642000-7fd08665e000 r-xp 00000000 fd:01 529221                     /lib/x86_64-linux-gnu/libz.so.1.2.11
+7fd08665e000-7fd08685d000 ---p 0001c000 fd:01 529221                     /lib/x86_64-linux-gnu/libz.so.1.2.11
+7fd08685d000-7fd08685e000 r--p 0001b000 fd:01 529221                     /lib/x86_64-linux-gnu/libz.so.1.2.11
+7fd08685e000-7fd08685f000 rw-p 0001c000 fd:01 529221                     /lib/x86_64-linux-gnu/libz.so.1.2.11
+7fd086861000-7fd08687c000 r--s 001d4000 fd:01 530541                     /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/ext/nashorn.jar
+7fd08687c000-7fd08687f000 r--s 0001a000 fd:01 12063081                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/jce.jar
+7fd08687f000-7fd086895000 r--s 0011d000 fd:01 12063233                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/jvmci/enterprise-graal.jar
+7fd086895000-7fd0868fc000 r--s 00f23000 fd:01 12063234                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/jvmci/graal.jar
+7fd0868fc000-7fd0868fd000 ---p 00000000 00:00 0 
+7fd0868fd000-7fd0869fd000 rw-p 00000000 00:00 0 
+7fd0869fd000-7fd086a00000 ---p 00000000 00:00 0 
+7fd086a00000-7fd0873fe000 rw-p 00000000 00:00 0 
+7fd0873fe000-7fd0873ff000 ---p 00000000 00:00 0 
+7fd0873ff000-7fd087402000 ---p 00000000 00:00 0 
+7fd087402000-7fd0875ff000 rw-p 00000000 00:00 0 
+7fd0875ff000-7fd087602000 ---p 00000000 00:00 0 
+7fd087602000-7fd088000000 rw-p 00000000 00:00 0 
+7fd088000000-7fd088140000 rw-p 00000000 00:00 0 
+7fd088140000-7fd08c000000 ---p 00000000 00:00 0 
+7fd08c000000-7fd08c001000 r--s 0000e000 fd:01 530548                     /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/ext/sunec.jar
+7fd08c001000-7fd08c003000 r--s 0000c000 fd:01 12454644                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/svm/library-support.jar
+7fd08c003000-7fd08c006000 r--s 0001a000 fd:01 12454941                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/svm/library-support-enterprise.jar
+7fd08c006000-7fd08c011000 r--s 0008e000 fd:01 12717431                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/svm/builder/svm-enterprise.jar
+7fd08c011000-7fd08c012000 ---p 00000000 00:00 0 
+7fd08c012000-7fd08c015000 ---p 00000000 00:00 0 
+7fd08c015000-7fd08c212000 rw-p 00000000 00:00 0 
+7fd08c212000-7fd08c213000 ---p 00000000 00:00 0 
+7fd08c213000-7fd08c216000 ---p 00000000 00:00 0 
+7fd08c216000-7fd08c413000 rw-p 00000000 00:00 0 
+7fd08c413000-7fd08c414000 ---p 00000000 00:00 0 
+7fd08c414000-7fd08c417000 ---p 00000000 00:00 0 
+7fd08c417000-7fd08c614000 rw-p 00000000 00:00 0 
+7fd08c614000-7fd08d0e3000 r--p 00000000 fd:01 6560418                    /usr/lib/locale/locale-archive
+7fd08d0e3000-7fd08d0e6000 ---p 00000000 00:00 0 
+7fd08d0e6000-7fd08dae4000 rw-p 00000000 00:00 0 
+7fd08dae4000-7fd08dae7000 ---p 00000000 00:00 0 
+7fd08dae7000-7fd08e4e5000 rw-p 00000000 00:00 0 
+7fd08e4e5000-7fd08e4e6000 ---p 00000000 00:00 0 
+7fd08e4e6000-7fd090000000 rw-p 00000000 00:00 0 
+7fd090000000-7fd0901b6000 rw-p 00000000 00:00 0 
+7fd0901b6000-7fd094000000 ---p 00000000 00:00 0 
+7fd094000000-7fd094001000 r--p 00000000 00:00 0 
+7fd094001000-7fd094006000 r--s 00084000 fd:01 12063012                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/jfr.jar
+7fd094006000-7fd09400d000 r--s 0010c000 fd:01 12717430                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/svm/builder/pointsto.jar
+7fd09400d000-7fd094033000 r--s 004a6000 fd:01 8657898                    /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/truffle/truffle-api.jar
+7fd094033000-7fd0941fa000 rw-p 00000000 00:00 0 
+7fd0941fa000-7fd0943d4000 r--s 03d88000 fd:01 12063082                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/rt.jar
+7fd0943d4000-7fd095000000 rw-p 00000000 00:00 0 
+7fd095000000-7fd097210000 rwxp 00000000 00:00 0 
+7fd097210000-7fd0a4000000 ---p 00000000 00:00 0 
+7fd0a4000000-7fd0a4598000 rw-p 00000000 00:00 0 
+7fd0a4598000-7fd0a8000000 ---p 00000000 00:00 0 
+7fd0a8000000-7fd0a8002000 r--s 00031000 fd:01 12717424                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/svm/builder/graal-llvm.jar
+7fd0a8002000-7fd0a8009000 r--s 000bf000 fd:01 12717429                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/svm/builder/objectfile.jar
+7fd0a8009000-7fd0a896c000 rw-p 00000000 00:00 0 
+7fd0a896c000-7fd0a896d000 ---p 00000000 00:00 0 
+7fd0a896d000-7fd0a8a6d000 rw-p 00000000 00:00 0 
+7fd0a8a6d000-7fd0a8a6e000 ---p 00000000 00:00 0 
+7fd0a8a6e000-7fd0a8b6e000 rw-p 00000000 00:00 0 
+7fd0a8b6e000-7fd0a8b6f000 ---p 00000000 00:00 0 
+7fd0a8b6f000-7fd0a8c6f000 rw-p 00000000 00:00 0 
+7fd0a8c6f000-7fd0a8c70000 ---p 00000000 00:00 0 
+7fd0a8c70000-7fd0a8d70000 rw-p 00000000 00:00 0 
+7fd0a8d70000-7fd0a8d71000 ---p 00000000 00:00 0 
+7fd0a8d71000-7fd0a8e71000 rw-p 00000000 00:00 0 
+7fd0a8e71000-7fd0a8e72000 ---p 00000000 00:00 0 
+7fd0a8e72000-7fd0a8f72000 rw-p 00000000 00:00 0 
+7fd0a8f72000-7fd0a8f73000 ---p 00000000 00:00 0 
+7fd0a8f73000-7fd0a94a3000 rw-p 00000000 00:00 0 
+7fd0a94a3000-7fd0a9891000 ---p 00000000 00:00 0 
+7fd0a9891000-7fd0a9cc1000 rw-p 00000000 00:00 0 
+7fd0a9cc1000-7fd0aa0ae000 ---p 00000000 00:00 0 
+7fd0aa0ae000-7fd0aa4bd000 rw-p 00000000 00:00 0 
+7fd0aa4bd000-7fd0aa547000 rw-p 00000000 00:00 0 
+7fd0aa547000-7fd0aa87e000 ---p 00000000 00:00 0 
+7fd0aa87e000-7fd0aa899000 r-xp 00000000 fd:01 12063169                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/libzip.so
+7fd0aa899000-7fd0aaa98000 ---p 0001b000 fd:01 12063169                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/libzip.so
+7fd0aaa98000-7fd0aaa99000 r--p 0001a000 fd:01 12063169                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/libzip.so
+7fd0aaa99000-7fd0aaa9a000 rw-p 0001b000 fd:01 12063169                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/libzip.so
+7fd0aaa9a000-7fd0aaaa5000 r-xp 00000000 fd:01 529139                     /lib/x86_64-linux-gnu/libnss_files-2.27.so
+7fd0aaaa5000-7fd0aaca4000 ---p 0000b000 fd:01 529139                     /lib/x86_64-linux-gnu/libnss_files-2.27.so
+7fd0aaca4000-7fd0aaca5000 r--p 0000a000 fd:01 529139                     /lib/x86_64-linux-gnu/libnss_files-2.27.so
+7fd0aaca5000-7fd0aaca6000 rw-p 0000b000 fd:01 529139                     /lib/x86_64-linux-gnu/libnss_files-2.27.so
+7fd0aaca6000-7fd0aacac000 rw-p 00000000 00:00 0 
+7fd0aacac000-7fd0aacc3000 r-xp 00000000 fd:01 529133                     /lib/x86_64-linux-gnu/libnsl-2.27.so
+7fd0aacc3000-7fd0aaec2000 ---p 00017000 fd:01 529133                     /lib/x86_64-linux-gnu/libnsl-2.27.so
+7fd0aaec2000-7fd0aaec3000 r--p 00016000 fd:01 529133                     /lib/x86_64-linux-gnu/libnsl-2.27.so
+7fd0aaec3000-7fd0aaec4000 rw-p 00017000 fd:01 529133                     /lib/x86_64-linux-gnu/libnsl-2.27.so
+7fd0aaec4000-7fd0aaec6000 rw-p 00000000 00:00 0 
+7fd0aaec6000-7fd0aaed1000 r-xp 00000000 fd:01 529150                     /lib/x86_64-linux-gnu/libnss_nis-2.27.so
+7fd0aaed1000-7fd0ab0d0000 ---p 0000b000 fd:01 529150                     /lib/x86_64-linux-gnu/libnss_nis-2.27.so
+7fd0ab0d0000-7fd0ab0d1000 r--p 0000a000 fd:01 529150                     /lib/x86_64-linux-gnu/libnss_nis-2.27.so
+7fd0ab0d1000-7fd0ab0d2000 rw-p 0000b000 fd:01 529150                     /lib/x86_64-linux-gnu/libnss_nis-2.27.so
+7fd0ab0d2000-7fd0ab0da000 r-xp 00000000 fd:01 529135                     /lib/x86_64-linux-gnu/libnss_compat-2.27.so
+7fd0ab0da000-7fd0ab2da000 ---p 00008000 fd:01 529135                     /lib/x86_64-linux-gnu/libnss_compat-2.27.so
+7fd0ab2da000-7fd0ab2db000 r--p 00008000 fd:01 529135                     /lib/x86_64-linux-gnu/libnss_compat-2.27.so
+7fd0ab2db000-7fd0ab2dc000 rw-p 00009000 fd:01 529135                     /lib/x86_64-linux-gnu/libnss_compat-2.27.so
+7fd0ab2dc000-7fd0ab308000 r-xp 00000000 fd:01 12063128                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/libjava.so
+7fd0ab308000-7fd0ab508000 ---p 0002c000 fd:01 12063128                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/libjava.so
+7fd0ab508000-7fd0ab509000 r--p 0002c000 fd:01 12063128                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/libjava.so
+7fd0ab509000-7fd0ab50b000 rw-p 0002d000 fd:01 12063128                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/libjava.so
+7fd0ab50b000-7fd0ab518000 r-xp 00000000 fd:01 12063113                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/libverify.so
+7fd0ab518000-7fd0ab717000 ---p 0000d000 fd:01 12063113                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/libverify.so
+7fd0ab717000-7fd0ab719000 r--p 0000c000 fd:01 12063113                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/libverify.so
+7fd0ab719000-7fd0ab71a000 rw-p 0000e000 fd:01 12063113                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/libverify.so
+7fd0ab71a000-7fd0ab721000 r-xp 00000000 fd:01 529190                     /lib/x86_64-linux-gnu/librt-2.27.so
+7fd0ab721000-7fd0ab920000 ---p 00007000 fd:01 529190                     /lib/x86_64-linux-gnu/librt-2.27.so
+7fd0ab920000-7fd0ab921000 r--p 00006000 fd:01 529190                     /lib/x86_64-linux-gnu/librt-2.27.so
+7fd0ab921000-7fd0ab922000 rw-p 00007000 fd:01 529190                     /lib/x86_64-linux-gnu/librt-2.27.so
+7fd0ab922000-7fd0ab923000 ---p 00000000 00:00 0 
+7fd0ab923000-7fd0ab926000 ---p 00000000 00:00 0 
+7fd0ab926000-7fd0ac323000 rw-p 00000000 00:00 0 
+7fd0ac323000-7fd0ac4c0000 r-xp 00000000 fd:01 529112                     /lib/x86_64-linux-gnu/libm-2.27.so
+7fd0ac4c0000-7fd0ac6bf000 ---p 0019d000 fd:01 529112                     /lib/x86_64-linux-gnu/libm-2.27.so
+7fd0ac6bf000-7fd0ac6c0000 r--p 0019c000 fd:01 529112                     /lib/x86_64-linux-gnu/libm-2.27.so
+7fd0ac6c0000-7fd0ac6c1000 rw-p 0019d000 fd:01 529112                     /lib/x86_64-linux-gnu/libm-2.27.so
+7fd0ac6c1000-7fd0ad483000 r-xp 00000000 fd:01 12063160                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/server/libjvm.so
+7fd0ad483000-7fd0ad682000 ---p 00dc2000 fd:01 12063160                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/server/libjvm.so
+7fd0ad682000-7fd0ad754000 rw-p 00dc1000 fd:01 12063160                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/server/libjvm.so
+7fd0ad754000-7fd0ad791000 rw-p 00000000 00:00 0 
+7fd0ad791000-7fd0ad978000 r-xp 00000000 fd:01 529049                     /lib/x86_64-linux-gnu/libc-2.27.so
+7fd0ad978000-7fd0adb78000 ---p 001e7000 fd:01 529049                     /lib/x86_64-linux-gnu/libc-2.27.so
+7fd0adb78000-7fd0adb7c000 r--p 001e7000 fd:01 529049                     /lib/x86_64-linux-gnu/libc-2.27.so
+7fd0adb7c000-7fd0adb7e000 rw-p 001eb000 fd:01 529049                     /lib/x86_64-linux-gnu/libc-2.27.so
+7fd0adb7e000-7fd0adb82000 rw-p 00000000 00:00 0 
+7fd0adb82000-7fd0adb85000 r-xp 00000000 fd:01 529072                     /lib/x86_64-linux-gnu/libdl-2.27.so
+7fd0adb85000-7fd0add84000 ---p 00003000 fd:01 529072                     /lib/x86_64-linux-gnu/libdl-2.27.so
+7fd0add84000-7fd0add85000 r--p 00002000 fd:01 529072                     /lib/x86_64-linux-gnu/libdl-2.27.so
+7fd0add85000-7fd0add86000 rw-p 00003000 fd:01 529072                     /lib/x86_64-linux-gnu/libdl-2.27.so
+7fd0add86000-7fd0add9d000 r-xp 00000000 fd:01 12063134                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/jli/libjli.so
+7fd0add9d000-7fd0adf9c000 ---p 00017000 fd:01 12063134                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/jli/libjli.so
+7fd0adf9c000-7fd0adf9d000 r--p 00016000 fd:01 12063134                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/jli/libjli.so
+7fd0adf9d000-7fd0adf9e000 rw-p 00017000 fd:01 12063134                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/amd64/jli/libjli.so
+7fd0adf9e000-7fd0adfb8000 r-xp 00000000 fd:01 529182                     /lib/x86_64-linux-gnu/libpthread-2.27.so
+7fd0adfb8000-7fd0ae1b7000 ---p 0001a000 fd:01 529182                     /lib/x86_64-linux-gnu/libpthread-2.27.so
+7fd0ae1b7000-7fd0ae1b8000 r--p 00019000 fd:01 529182                     /lib/x86_64-linux-gnu/libpthread-2.27.so
+7fd0ae1b8000-7fd0ae1b9000 rw-p 0001a000 fd:01 529182                     /lib/x86_64-linux-gnu/libpthread-2.27.so
+7fd0ae1b9000-7fd0ae1bd000 rw-p 00000000 00:00 0 
+7fd0ae1bd000-7fd0ae1e4000 r-xp 00000000 fd:01 529021                     /lib/x86_64-linux-gnu/ld-2.27.so
+7fd0ae1e4000-7fd0ae1e5000 r--s 00010000 fd:01 530545                     /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/ext/zipfs.jar
+7fd0ae1e5000-7fd0ae1e7000 r--s 00022000 fd:01 12717423                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/svm/builder/svm-llvm.jar
+7fd0ae1e7000-7fd0ae1e8000 r--s 00000000 fd:01 12717422                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/svm/builder/svm-enterprise-llvm.jar
+7fd0ae1e8000-7fd0ae1ed000 r--s 00053000 fd:01 12717426                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/svm/builder/javacpp.jar
+7fd0ae1ed000-7fd0ae1f1000 r--s 0001d000 fd:01 12717425                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/svm/builder/llvm-wrapper.jar
+7fd0ae1f1000-7fd0ae1f4000 r--s 00079000 fd:01 12063183                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/jvmci/jvmci-api.src.zip
+7fd0ae1f4000-7fd0ae1f9000 r--s 0008c000 fd:01 12063184                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/jvmci/jvmci-hotspot.jar
+7fd0ae1f9000-7fd0ae1fc000 r--s 000a1000 fd:01 12063182                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/jvmci/jvmci-hotspot.src.zip
+7fd0ae1fc000-7fd0ae2bf000 rw-p 00000000 00:00 0 
+7fd0ae2bf000-7fd0ae2c0000 ---p 00000000 00:00 0 
+7fd0ae2c0000-7fd0ae3c2000 rw-p 00000000 00:00 0 
+7fd0ae3c2000-7fd0ae3c3000 r--s 015b5000 fd:01 12717427                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/svm/builder/llvm-platform-specific.jar
+7fd0ae3c3000-7fd0ae3c4000 r--s 00005000 fd:01 12063235                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/jvmci/graal-management.jar
+7fd0ae3c4000-7fd0ae3c8000 r--s 0004d000 fd:01 12063185                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/jvmci/jvmci-api.jar
+7fd0ae3c8000-7fd0ae3c9000 r--s 00006000 fd:01 8661784                    /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/truffle/locator.jar
+7fd0ae3c9000-7fd0ae3cd000 r--s 000fb000 fd:01 12062954                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/boot/graal-sdk.src.zip
+7fd0ae3cd000-7fd0ae3cf000 r--s 0000c000 fd:01 12063009                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/boot/graaljs-scriptengine.jar
+7fd0ae3cf000-7fd0ae3d7000 r--s 00072000 fd:01 12062939                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/boot/graal-sdk.jar
+7fd0ae3d7000-7fd0ae3d8000 r--s 00005000 fd:01 12063229                   /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/jvmci-services.jar
+7fd0ae3d8000-7fd0ae3e0000 rw-s 00000000 fd:01 8540574                    /tmp/hsperfdata_francois/5539
+7fd0ae3e0000-7fd0ae3e1000 rw-p 00000000 00:00 0 
+7fd0ae3e1000-7fd0ae3e2000 ---p 00000000 00:00 0 
+7fd0ae3e2000-7fd0ae3e4000 rw-p 00000000 00:00 0 
+7fd0ae3e4000-7fd0ae3e5000 r--p 00027000 fd:01 529021                     /lib/x86_64-linux-gnu/ld-2.27.so
+7fd0ae3e5000-7fd0ae3e6000 rw-p 00028000 fd:01 529021                     /lib/x86_64-linux-gnu/ld-2.27.so
+7fd0ae3e6000-7fd0ae3e7000 rw-p 00000000 00:00 0 
+7fff2f114000-7fff2f137000 rw-p 00000000 00:00 0                          [stack]
+7fff2f144000-7fff2f147000 r--p 00000000 00:00 0                          [vvar]
+7fff2f147000-7fff2f148000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+
+VM Arguments:
+jvm_args: -XX:+UnlockExperimentalVMOptions -XX:+EnableJVMCI -Dtruffle.TrustAllTruffleRuntimeProviders=true -Dtruffle.TruffleRuntime=com.oracle.truffle.api.impl.DefaultTruffleRuntime -Dgraalvm.ForcePolyglotInvalid=true -Dgraalvm.locatorDisabled=true -XX:-UseJVMCIClassLoader -XX:+UseJVMCINativeLibrary -Xss10m -Xms1g -Xmx6533178976 -Duser.country=US -Duser.language=en -Dorg.graalvm.version=19.2.0 -Dorg.graalvm.config=EE -Dcom.oracle.graalvm.isaot=true -Djvmci.class.path.append=/home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/jvmci/graal.jar:/home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/jvmci/enterprise-graal.jar -Xbootclasspath/a:/home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/boot/graal-sdk.jar:/home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/boot/graaljs-scriptengine.jar 
+java_command: com.oracle.svm.hosted.NativeImageGeneratorRunner -watchpid 5517 -imagecp /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/boot/graal-sdk.jar:/home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/boot/graaljs-scriptengine.jar:/home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/svm/builder/llvm-wrapper.jar:/home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/svm/builder/llvm-platform-specific.jar:/home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/svm/builder/objectfile.jar:/home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/svm/builder/javacpp.jar:/home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/svm/builder/pointsto.jar:/home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/svm/builder/svm-enterprise.jar:/home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/svm/builder/svm-enterprise-llvm.jar:/home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/svm/builder/svm-llvm.jar:/home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/svm/builder/svm.jar:/home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/svm/builder/graal-llvm.jar:/home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/jvmci/graal.jar:/home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/jvmci/jvmci-api.jar:/home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/jvmci/jvmci-hotspot.jar:/home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/jvmci/graal-management.jar:/home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/jvmci/enterprise-graal.jar:/home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/svm/library-support.jar:/home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/svm/library-support-enterprise.jar:/home/francois/dev/projects/gfi/midis-techniques/midi-tech-micronaut-quarkus/demo/micronaut-graalvm/target/micronaut-graalvm-0.1.jar -H:Path=/home/francois/dev/projects/gfi/midis-techniques/midi-tech-micronaut-quarkus/demo/micronaut-graalvm -H:IncludeResources=META-INF/http/mime.types -H:ReflectionConfigurationResources=META-INF/native-image/io.netty/transport/reflection-config.json -H:ClassInitialization=io.netty.handler.codec.http.
+java_class_path (initial): /home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/svm/builder/llvm-wrapper.jar:/home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/svm/builder/llvm-platform-specific.jar:/home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/svm/builder/objectfile.jar:/home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/svm/builder/javacpp.jar:/home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/svm/builder/pointsto.jar:/home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/svm/builder/svm-enterprise.jar:/home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/svm/builder/svm-enterprise-llvm.jar:/home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/svm/builder/svm-llvm.jar:/home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/svm/builder/svm.jar:/home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/svm/builder/graal-llvm.jar:/home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/jvmci/graal.jar:/home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/jvmci/jvmci-api.jar:/home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/jvmci/jvmci-hotspot.jar:/home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/jvmci/graal-management.jar:/home/francois/dev/tools/graalvm-ee-19.2.0/jre/lib/jvmci/enterprise-graal.jar
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+JAVA_HOME=/usr/lib/jvm/java-11-oracle/
+PATH=/home/francois/.sdkman/candidates/micronaut/current/bin:/home/francois/.nvm/versions/node/v10.15.3/bin:/home/francois/bin:/usr/local/bin:/home/francois/.local/bin:/home/francois/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/lib/jvm/java-12-oracle/bin:/usr/lib/jvm/java-12-oracle/db/bin:/usr/lib/jvm/java-11-oracle//bin:/home/francois/dev/tools/apache-maven-3.6.0/bin:/usr/lib/go-1.10/bin:/home/francois/dev/go/bin
+USERNAME=francois
+SHELL=/usr/bin/zsh
+DISPLAY=:0
+
+Signal Handlers:
+SIGSEGV: [libjvm.so+0xb7c2b0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGBUS: [libjvm.so+0xb7c2b0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGFPE: [libjvm.so+0x9b2660], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGPIPE: [libjvm.so+0x9b2660], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGXFSZ: [libjvm.so+0x9b2660], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGILL: [libjvm.so+0x9b2660], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGUSR1: SIG_DFL, sa_mask[0]=00000000000000000000000000000000, sa_flags=none
+SIGUSR2: [libjvm.so+0x9b2530], sa_mask[0]=00000000000000000000000000000000, sa_flags=SA_RESTART|SA_SIGINFO
+SIGHUP: [libjvm.so+0x9b2b50], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGINT: [libjvm.so+0x9b2b50], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGTERM: [libjvm.so+0x9b2b50], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGQUIT: [libjvm.so+0x9b2b50], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+
+
+---------------  S Y S T E M  ---------------
+
+OS:DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=18.04
+DISTRIB_CODENAME=bionic
+DISTRIB_DESCRIPTION="Ubuntu 18.04.3 LTS"
+
+uname:Linux 5.0.17-050017-generic #201905161857 SMP Thu May 16 18:59:46 UTC 2019 x86_64
+libc:glibc 2.27 NPTL 2.27 
+rlimit: STACK 8192k, CORE 0k, NPROC 30886, NOFILE 4096, AS infinity
+load average:6,25 3,65 2,36
+
+/proc/meminfo:
+MemTotal:        7975072 kB
+MemFree:          136268 kB
+MemAvailable:     140000 kB
+Buffers:            9100 kB
+Cached:           522416 kB
+SwapCached:        67612 kB
+Active:          5229888 kB
+Inactive:         881080 kB
+Active(anon):    5172684 kB
+Inactive(anon):   763936 kB
+Active(file):      57204 kB
+Inactive(file):   117144 kB
+Unevictable:       42752 kB
+Mlocked:           13564 kB
+SwapTotal:       4986940 kB
+SwapFree:         345564 kB
+Dirty:               252 kB
+Writeback:             0 kB
+AnonPages:       5555868 kB
+Mapped:           431100 kB
+Shmem:            343068 kB
+KReclaimable:     112764 kB
+Slab:             333608 kB
+SReclaimable:     112764 kB
+SUnreclaim:       220844 kB
+KernelStack:       21440 kB
+PageTables:        82924 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:     8974476 kB
+Committed_AS:   18027768 kB
+VmallocTotal:   34359738367 kB
+VmallocUsed:           0 kB
+VmallocChunk:          0 kB
+Percpu:             6976 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:         0 kB
+ShmemHugePages:        0 kB
+ShmemPmdMapped:        0 kB
+CmaTotal:              0 kB
+CmaFree:               0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+Hugetlb:               0 kB
+DirectMap4k:      430872 kB
+DirectMap2M:     7768064 kB
+DirectMap1G:           0 kB
+
+container (cgroup) information:
+container_type: cgroupv1
+cpu_cpuset_cpus: 0-7
+cpu_memory_nodes: 0
+active_processor_count: 8
+cpu_quota: -1
+cpu_period: 100000
+cpu_shares: -1
+memory_limit_in_bytes: -1
+memory_and_swap_limit_in_bytes: -2
+memory_soft_limit_in_bytes: -1
+memory_usage_in_bytes: 6316642304
+memory_max_usage_in_bytes: 7162347520
+
+
+CPU:total 8 (initial active 8) (4 cores per cpu, 2 threads per core) family 6 model 142 stepping 11, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, avx2, aes, clmul, erms, 3dnowpref, lzcnt, ht, tsc, tscinvbit, bmi1, bmi2, adx
+
+/proc/cpuinfo:
+processor	: 0
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 142
+model name	: Intel(R) Core(TM) i7-8565U CPU @ 1.80GHz
+stepping	: 11
+microcode	: 0x98
+cpu MHz		: 1767.760
+cache size	: 8192 KB
+physical id	: 0
+siblings	: 8
+core id		: 0
+cpu cores	: 4
+apicid		: 0
+initial apicid	: 0
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 22
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf tsc_known_freq pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault epb invpcid_single ssbd ibrs ibpb stibp tpr_shadow vnmi flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx rdseed adx smap clflushopt intel_pt xsaveopt xsavec xgetbv1 xsaves dtherm ida arat pln pts hwp hwp_notify hwp_act_window hwp_epp flush_l1d arch_capabilities
+bugs		: spectre_v1 spectre_v2 spec_store_bypass mds
+bogomips	: 3984.00
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 39 bits physical, 48 bits virtual
+power management:
+
+processor	: 1
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 142
+model name	: Intel(R) Core(TM) i7-8565U CPU @ 1.80GHz
+stepping	: 11
+microcode	: 0x98
+cpu MHz		: 1733.699
+cache size	: 8192 KB
+physical id	: 0
+siblings	: 8
+core id		: 1
+cpu cores	: 4
+apicid		: 2
+initial apicid	: 2
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 22
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf tsc_known_freq pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault epb invpcid_single ssbd ibrs ibpb stibp tpr_shadow vnmi flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx rdseed adx smap clflushopt intel_pt xsaveopt xsavec xgetbv1 xsaves dtherm ida arat pln pts hwp hwp_notify hwp_act_window hwp_epp flush_l1d arch_capabilities
+bugs		: spectre_v1 spectre_v2 spec_store_bypass mds
+bogomips	: 3984.00
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 39 bits physical, 48 bits virtual
+power management:
+
+processor	: 2
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 142
+model name	: Intel(R) Core(TM) i7-8565U CPU @ 1.80GHz
+stepping	: 11
+microcode	: 0x98
+cpu MHz		: 1756.037
+cache size	: 8192 KB
+physical id	: 0
+siblings	: 8
+core id		: 2
+cpu cores	: 4
+apicid		: 4
+initial apicid	: 4
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 22
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf tsc_known_freq pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault epb invpcid_single ssbd ibrs ibpb stibp tpr_shadow vnmi flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx rdseed adx smap clflushopt intel_pt xsaveopt xsavec xgetbv1 xsaves dtherm ida arat pln pts hwp hwp_notify hwp_act_window hwp_epp flush_l1d arch_capabilities
+bugs		: spectre_v1 spectre_v2 spec_store_bypass mds
+bogomips	: 3984.00
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 39 bits physical, 48 bits virtual
+power management:
+
+processor	: 3
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 142
+model name	: Intel(R) Core(TM) i7-8565U CPU @ 1.80GHz
+stepping	: 11
+microcode	: 0x98
+cpu MHz		: 1743.762
+cache size	: 8192 KB
+physical id	: 0
+siblings	: 8
+core id		: 3
+cpu cores	: 4
+apicid		: 6
+initial apicid	: 6
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 22
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf tsc_known_freq pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault epb invpcid_single ssbd ibrs ibpb stibp tpr_shadow vnmi flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx rdseed adx smap clflushopt intel_pt xsaveopt xsavec xgetbv1 xsaves dtherm ida arat pln pts hwp hwp_notify hwp_act_window hwp_epp flush_l1d arch_capabilities
+bugs		: spectre_v1 spectre_v2 spec_store_bypass mds
+bogomips	: 3984.00
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 39 bits physical, 48 bits virtual
+power management:
+
+processor	: 4
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 142
+model name	: Intel(R) Core(TM) i7-8565U CPU @ 1.80GHz
+stepping	: 11
+microcode	: 0x98
+cpu MHz		: 1717.376
+cache size	: 8192 KB
+physical id	: 0
+siblings	: 8
+core id		: 0
+cpu cores	: 4
+apicid		: 1
+initial apicid	: 1
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 22
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf tsc_known_freq pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault epb invpcid_single ssbd ibrs ibpb stibp tpr_shadow vnmi flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx rdseed adx smap clflushopt intel_pt xsaveopt xsavec xgetbv1 xsaves dtherm ida arat pln pts hwp hwp_notify hwp_act_window hwp_epp flush_l1d arch_capabilities
+bugs		: spectre_v1 spectre_v2 spec_store_bypass mds
+bogomips	: 3984.00
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 39 bits physical, 48 bits virtual
+power management:
+
+processor	: 5
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 142
+model name	: Intel(R) Core(TM) i7-8565U CPU @ 1.80GHz
+stepping	: 11
+microcode	: 0x98
+cpu MHz		: 1754.067
+cache size	: 8192 KB
+physical id	: 0
+siblings	: 8
+core id		: 1
+cpu cores	: 4
+apicid		: 3
+initial apicid	: 3
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 22
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf tsc_known_freq pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault epb invpcid_single ssbd ibrs ibpb stibp tpr_shadow vnmi flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx rdseed adx smap clflushopt intel_pt xsaveopt xsavec xgetbv1 xsaves dtherm ida arat pln pts hwp hwp_notify hwp_act_window hwp_epp flush_l1d arch_capabilities
+bugs		: spectre_v1 spectre_v2 spec_store_bypass mds
+bogomips	: 3984.00
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 39 bits physical, 48 bits virtual
+power management:
+
+processor	: 6
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 142
+model name	: Intel(R) Core(TM) i7-8565U CPU @ 1.80GHz
+stepping	: 11
+microcode	: 0x98
+cpu MHz		: 1726.399
+cache size	: 8192 KB
+physical id	: 0
+siblings	: 8
+core id		: 2
+cpu cores	: 4
+apicid		: 5
+initial apicid	: 5
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 22
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf tsc_known_freq pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault epb invpcid_single ssbd ibrs ibpb stibp tpr_shadow vnmi flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx rdseed adx smap clflushopt intel_pt xsaveopt xsavec xgetbv1 xsaves dtherm ida arat pln pts hwp hwp_notify hwp_act_window hwp_epp flush_l1d arch_capabilities
+bugs		: spectre_v1 spectre_v2 spec_store_bypass mds
+bogomips	: 3984.00
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 39 bits physical, 48 bits virtual
+power management:
+
+processor	: 7
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 142
+model name	: Intel(R) Core(TM) i7-8565U CPU @ 1.80GHz
+stepping	: 11
+microcode	: 0x98
+cpu MHz		: 1759.054
+cache size	: 8192 KB
+physical id	: 0
+siblings	: 8
+core id		: 3
+cpu cores	: 4
+apicid		: 7
+initial apicid	: 7
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 22
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf tsc_known_freq pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault epb invpcid_single ssbd ibrs ibpb stibp tpr_shadow vnmi flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx rdseed adx smap clflushopt intel_pt xsaveopt xsavec xgetbv1 xsaves dtherm ida arat pln pts hwp hwp_notify hwp_act_window hwp_epp flush_l1d arch_capabilities
+bugs		: spectre_v1 spectre_v2 spec_store_bypass mds
+bogomips	: 3984.00
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 39 bits physical, 48 bits virtual
+power management:
+
+
+
+Memory: 4k page, physical 7975072k(137276k free), swap 4986940k(345820k free)
+
+vm_info: Java HotSpot(TM) 64-Bit GraalVM EE 19.2.0 (25.221-b11-jvmci-19.2-b02) for linux-amd64 JRE (8u221), built on Jul 19 2019 17:37:36 by "buildslave" with gcc 7.3.0
+
+time: Sun Sep  8 12:27:50 2019
+timezone: CEST
+elapsed time: 93 seconds (0d 0h 1m 33s)
+

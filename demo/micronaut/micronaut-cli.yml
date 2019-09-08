@@ -1,0 +1,5 @@
+profile: service
+defaultPackage: fr.delbrayelle
+---
+testFramework: junit
+sourceLanguage: java
