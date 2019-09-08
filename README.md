@@ -1,7 +1,13 @@
 # Midi technique - Micronaut et Quarkus
 
-<p align="center"><img src="https://github.com/fdelbrayelle/midi-tech-micronaut-quarkus/blob/master/slides/src/images/micronaut-github.png" width="50%" /></p>
-<p align="center"><img src="https://github.com/fdelbrayelle/midi-tech-micronaut-quarkus/blob/master/slides/src/images/quarkus-github.png" /></p>
+<div align="center">
+    <span>
+        <img src="https://github.com/fdelbrayelle/midi-tech-micronaut-quarkus/blob/master/slides/src/images/micronaut-github.png" width="40%" />
+    </span>
+    <span>
+        <img src="https://github.com/fdelbrayelle/midi-tech-micronaut-quarkus/blob/master/slides/src/images/quarkus-github.png" />
+    </span>
+</div>
 
 Ce dépôt contient les [slides](https://github.com/fdelbrayelle/midi-tech-micronaut-quarkus/blob/master/slides) et la [démo](https://github.com/fdelbrayelle/midi-tech-micronaut-quarkus/blob/master/demo) du midi technique effectué le mercredi 11 septembre 2019 chez Gfi Informatique.
 
