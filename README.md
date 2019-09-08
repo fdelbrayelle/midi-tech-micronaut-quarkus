@@ -2,9 +2,9 @@
 
 <div align="center">
     <span>
-        <img src="https://github.com/fdelbrayelle/midi-tech-micronaut-quarkus/blob/master/slides/src/images/micronaut-github.png" width="40%" />
+        <img src="https://github.com/fdelbrayelle/midi-tech-micronaut-quarkus/blob/master/slides/src/images/micronaut-github.png" width="20%" />
     </span>
-    <span>
+    <span style="margin: 50px;">
         <img src="https://github.com/fdelbrayelle/midi-tech-micronaut-quarkus/blob/master/slides/src/images/quarkus-github.png" />
     </span>
 </div>
