@@ -39,7 +39,7 @@ Et la même chose mais en construisant une image native :
 
 - Se déplacer dans le dossier de la démo : `cd demo`
 - Créer un projet Micronaut via la commande suivante basée sur [SDKMAN](https://sdkman.io/install) : `mn create-app micronaut-graalvm --features graal-native-image -b maven`
-- Montrer les différences avec la feature GraalVM : dépendances "svm" et "micronaut-graal", Dockerfile adapté...
+- Montrer les différences avec la feature GraalVM : dépendances "svm" (SubstractVM) et "micronaut-graal", Dockerfile adapté...
 - Packager l'application avec `./mvnw package` et créer l'image native avec `$GRAALVM_HOME/bin/native-image --no-server -cp target/micronaut-graalvm-0.1.jar`
 - Lancer l'application avec `./micronaut-graalvm` et constater le temps de démarrage très bas
 
@@ -58,11 +58,11 @@ mvn io.quarkus:quarkus-maven-plugin:0.21.2:create \
 
 - Montrer ce que contient le pom.xml ainsi que les deux Dockerfile (un pour la JVM classique, un pour GraalVM et les images natives)
 - Ouvrir la classe "GreetingResource" générée via la commande maven
-- Lancer l'application avec `./mvnw compile quarkus:dev` (permet en plus d'écouter un debugger sur le port 5005 par défaut)
+- Lancer l'application avec `./mvnw compile quarkus:dev` (permet en plus d'écouter un debugger sur le port 5005 par défaut, l'injection de dépendances se fait à la compilation et non au runtime comme avec Spring ; autre différence : pas de fichier "Application" comme sur Spring)
 - Vérifier que la ressource répond correctement avec `gio open http://localhost:8080/hello` ou `curl http://localhost:8080/hello`
 - Montrer l'unique fichier de configuration "application.properties" (préconisation d'y placer toute la configuration)
 - Créer un nouveau service "GreetingService" avec l'annotation @ApplicationScoped et l'injecter avec [@Inject](https://quarkus.io/blog/quarkus-dependency-injection/) dans la ressource pour l'utiliser dans un nouveau endpoint
-- Vérifier (sans relancer la commande maven) que la ressource répond correctement avec `gio open http://localhost:8080/hello/greeting/Gfi` ou `curl http://localhost:8080/hello/greeting/Gfi` (l'application est rechargée à chaud)
+- Vérifier (sans relancer la commande maven) que la ressource répond correctement avec `gio open http://localhost:8080/hello/greeting/Gfi` ou `curl http://localhost:8080/hello/greeting/Gfi` (l'application est rechargée à chaud à chaque appel et non à chaque sauvegarde du code)
 - Ouvrir la classe de tests "GreetingResourceTest" (l'annotation [@QuarkusTest](https://quarkus.io/guides/tests-with-coverage-guide) permet de demander à JUnit de lancer l'application avant les tests)
 - Packager l'application avec `./mvnw package` et lancer l'application avec `java -jar target/quarkus-1.0-SNAPSHOT-runner.jar`
 - Vérifier que la ressource répond correctement avec `gio open http://localhost:8080/hello` ou `curl http://localhost:8080/hello`
