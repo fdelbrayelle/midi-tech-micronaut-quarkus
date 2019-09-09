@@ -18,6 +18,7 @@ Les supports peuvent être librement modifiés et réutilisés. Les slides ont �
 - Builder le projet : `mvn clean package` et le lancer pour le présenter : `java -jar target/graalvm-0.0.1-SNAPSHOT.jar`
 - Générer une image native du projet avec `$GRAALVM_HOME/bin/native-image -jar target/graalvm-0.0.1-SNAPSHOT.jar`
 - Lancer le projet avec `./graalvm-0.0.1-SNAPSHOT`
+- Avec la version entreprise de GraalVM il est possible d'utiliser une fonctionnalité d'optimisation importante supplémentaire : les [profile-guided optimizations (PGO)](https://www.graalvm.org/docs/reference-manual/aot-compilation/#profile-guided-optimizations).
 
 ## Étapes de la démo (Micronaut)
 

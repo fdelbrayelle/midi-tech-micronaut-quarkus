@@ -171,6 +171,7 @@ export default class Presentation extends React.Component {
               <li>Empreinte mémoire faible du fait de que les classes sont compilées en avance</li>
               <li>Temps de compilation et de lancement très réduits = adapté au serverless (ou tout du moins commence à s'adapter)</li>
               <li>Injection de dépendance à la compilation et non au runtime comme beaucoup de frameworks utilisant la reflection et les proxies</li>
+              <li>Avant la version 19.2.0 : gu install image-native, depuis il faut l'installer depuis le réseau OTN d'Oracle (https://www.oracle.com/downloads/graalvm-downloads.html), télécharger le jar et faire un gu install --file du.jar</li>
             </ul>
           </Notes>
         </Slide>
