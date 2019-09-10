@@ -12,8 +12,8 @@ import java.util.List;
 public class PersonResource {
 
     @GET
-    public List<Person> findAlive() {
-        return Person.findAlive();
+    public List<Person> listAll() {
+        return Person.listAll();
     }
 
     @POST
