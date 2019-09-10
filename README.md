@@ -72,9 +72,21 @@ Et la même chose mais en construisant une image native :
 - Créer un exécutable natif avec `./mvnw package -Pnative` et le tester en le lançant : `./target/quarkus-1.0-SNAPSHOT-runner` (constater le temps de démarrage très bas)
 - Vérifier que la ressource répond correctement avec `gio open http://localhost:8080/hello` ou `curl http://localhost:8080/hello`
 
+Avec une base de données PostgreSQL :
+
+- Se connecter en tant que "postgres" : `sudo -u postgres -i`, créer une base de données : `createdb quarkusdb` puis Ctrl + D ou `exit`
+- Lister les extensions Quarkus qu'il est possible d'ajouter avec `./mvnw quarkus:list-extensions` (il s'agit de simples dépendances dans le pom)
+- Ajouter l'extension "Hibernate ORM with Panache" : `./mvnw quarkus:add-extension -Dextensions="hibernate-orm-panache"` et l'extension PostgreSQL : `./mvnw quarkus:add-extension -Dextensions="quarkus-jdbc-postgresql"`
+- Ajouter les informations de connexion à la base dans application.properties
+- Créer une entité "Person" qui étend "PanacheEntity" et va servir de repository pour faire les appels à la base de données
+- Créer une resource REST "PersonResource" avec un chemin pour appeler la liste des personnes vivantes
+- Ajouter l'extension RESTEasy Jackson : `./mvnw quarkus:add-extension -Dextensions="quarkus-resteasy-jackson"` pour pouvoir convertir une Person en JSON et vice versa
+- Tester avec `curl localhost:8080/persons`, la base de données ne contient aucune personne
+- Créer un chemin pour créer une personne dans "PersonResource", rendre la méthode @Transactional
+- Tester avec `curl -X POST -H "Content-Type: application/json" -d '{"name": "François", "birth": "1987-07-23", "status": "Alive"}' localhost:8080/persons` (tester aussi sans l'attribut 'name' pour vérifier que l'erreur 420 s'affiche)
+- Se connecter en tant que "postgres" : `sudo -u postgres -i`, `psql --username=postgres`, `\connect quarkusdb` et tape `\dt` pour lister les tables puis `select * from person` pour vérifier les personnes
+
 En complément :
 
 - Montrer le [générateur d'applications Quarkus](https://code.quarkus.io/) qui permet comme [Spring Initializr](https://start.spring.io/) de générer un squelette d'applications avec des dépendances choisies
-- Lister les extensions Quarkus qu'il est possible d'ajouter avec `./mvnw quarkus:list-extensions` (il s'agit de simples dépendances dans le pom)
-- En ajouter une pour voir avec `./mvnw quarkus:add-extension -Dextensions="hibernate-validator"`
 - Il est possible de générer une application via JHipster uniquement avec le front (et donc sans back Spring Boot) avec `jhipster --skip-server`. Une [démonstration](https://github.com/devoxx/quarkusHipster) qu'il est possible de faire appel à un back développé en Quarkus et lancé via une image native a été faite par Stephan Janssen au Devoxx.
