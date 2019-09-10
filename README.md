@@ -13,6 +13,7 @@ Les supports peuvent être librement modifiés et réutilisés. Les slides ont �
 
 ## Étapes de la démo (GraalVM)
 
+- Prérequis : S'assurer que GraalVM est bien [installé](https://www.graalvm.org/docs/getting-started/) et la variable d'environnement GRAALVM_HOME correctement renseignée vers le chemin d'installation de GraalVM
 - Montrer le contenu du répertoire bin d'installation de GraalVM 19.2.0 : `ll $GRAALVM_HOME/bin`
 - Se déplacer dans le dossier de la démo GraalVM : `cd demo/graalvm`
 - Builder le projet : `mvn clean package` et le lancer pour le présenter : `java -jar target/graalvm-0.0.1-SNAPSHOT.jar`
