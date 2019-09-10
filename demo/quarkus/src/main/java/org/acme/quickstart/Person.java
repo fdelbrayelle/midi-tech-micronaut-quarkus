@@ -14,7 +14,7 @@ public class Person extends PanacheEntity {
         return find("name", name).firstResult();
     }
 
-    public static List<Person> findAlive(){
+    public static List<Person> find32yoPersons(){
         return list("age", 32);
     }
 
